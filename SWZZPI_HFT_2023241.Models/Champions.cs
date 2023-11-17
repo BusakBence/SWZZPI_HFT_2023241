@@ -20,10 +20,11 @@ namespace SWZZPI_HFT_2023241.Models
         [Required]
         public int ReleaseYear { get; set; }
         public int RegionsId { get; set; }
-        public virtual ICollection<Regions> Regions { get; set; }
+        public virtual Regions Region { get; set; }
+        public virtual ICollection<Abilities> Abilities { get; set; }
         public Champions()
         {
-            Regions = new HashSet<Regions>();
+            Abilities = new HashSet<Abilities>();
         }
         public Champions(string line)
         {

@@ -16,10 +16,10 @@ namespace SWZZPI_HFT_2023241.Models
         [Required]
         public char AbilityKey { get; set; }
         public int ChampionId { get; set; }
-        public virtual ICollection<Champions> Champions { get; set; }
+        public virtual Champions Champion { get; set; }
         public Abilities()
         {
-            Champions = new HashSet<Champions>();
+
         }
         public Abilities(string line)
         {

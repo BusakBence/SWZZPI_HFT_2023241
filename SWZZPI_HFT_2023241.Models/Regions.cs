@@ -16,9 +16,10 @@ namespace SWZZPI_HFT_2023241.Models
         public string TechnologyLevel { get; set; }
         public string FormOfGovernment { get; set; }
         public string Environment { get; set; }
+        public ICollection<Champions> Champions { get; set; }
         public Regions()
         {
-
+            Champions = new HashSet<Champions>();
         }
         public Regions(string line)
         {
