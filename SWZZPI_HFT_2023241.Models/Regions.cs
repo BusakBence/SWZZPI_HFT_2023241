@@ -1,12 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SWZZPI_HFT_2023241.Models
 {
-    class Regions
+    public class Regions
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public string TechnologyLevel { get; set; }
+        public string FormOfGovernment { get; set; }
+        public string Environment { get; set; }
+        public Regions()
+        {
+
+        }
+        public Regions(string line)
+        {
+            string[] split = line.Split('*');
+            Id = int.Parse(split[0]);
+            Name = split[1];
+            Location = split[2];
+            TechnologyLevel = split[3];
+            FormOfGovernment = split[4];
+            Environment = split[5];
+        }
     }
 }
