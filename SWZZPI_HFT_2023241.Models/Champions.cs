@@ -19,12 +19,15 @@ namespace SWZZPI_HFT_2023241.Models
         public string Lane { get; set; }
         [Required]
         public int ReleaseYear { get; set; }
+        [Required, ForeignKey(nameof(Region))]
         public int RegionsId { get; set; }
         public virtual Regions Region { get; set; }
         public virtual ICollection<Abilities> Abilities { get; set; }
+        public virtual ICollection<Regions> Regions { get; set; }
         public Champions()
         {
             Abilities = new HashSet<Abilities>();
+            Regions = new HashSet<Regions>();
         }
         public Champions(string line)
         {

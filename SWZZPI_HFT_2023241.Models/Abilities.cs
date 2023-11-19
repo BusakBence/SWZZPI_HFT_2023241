@@ -15,6 +15,7 @@ namespace SWZZPI_HFT_2023241.Models
         public string Name { get; set; }
         [Required]
         public char AbilityKey { get; set; }
+        [Required, ForeignKey(nameof(Champion))]
         public int ChampionId { get; set; }
         public virtual Champions Champion { get; set; }
         public Abilities()
