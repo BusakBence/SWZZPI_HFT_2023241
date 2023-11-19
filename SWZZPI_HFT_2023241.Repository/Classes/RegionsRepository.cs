@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SWZZPI_HFT_2023241.Repository
 {
-    class RegionsRepository : Repository<Regions>, IRepository<Regions>
+    public class RegionsRepository : Repository<Regions>, IRepository<Regions>
     {
         public RegionsRepository(LolDBContext ctx) : base(ctx)
         {

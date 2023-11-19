@@ -3,7 +3,7 @@ using SWZZPI_HFT_2023241.Models;
 
 namespace SWZZPI_HFT_2023241.Repository
 {
-    class ChampionsRepository : Repository<Champions>, IRepository<Champions>
+    public class ChampionsRepository : Repository<Champions>, IRepository<Champions>
     {
         public ChampionsRepository(LolDBContext ctx) : base(ctx)
         {

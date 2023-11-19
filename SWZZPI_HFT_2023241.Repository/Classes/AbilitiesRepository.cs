@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SWZZPI_HFT_2023241.Repository
 {
-    class AbilitiesRepository : Repository<Abilities>, IRepository<Abilities>
+    public class AbilitiesRepository : Repository<Abilities>, IRepository<Abilities>
     {
         public AbilitiesRepository(LolDBContext ctx) : base(ctx)
         {
