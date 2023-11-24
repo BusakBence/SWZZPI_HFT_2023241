@@ -2,7 +2,7 @@
 
 namespace SWZZPI_HFT_2023241.Repository
 {
-    interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         void Create(T item);
         T Read(int id);
