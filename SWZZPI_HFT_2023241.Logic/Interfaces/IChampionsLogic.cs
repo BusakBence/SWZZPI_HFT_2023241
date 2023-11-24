@@ -10,5 +10,6 @@ namespace SWZZPI_HFT_2023241.Logic
         IQueryable<Champions> ReadAll();
         void Update(Champions champion);
         void Delete(int id);
+
     }
 }
