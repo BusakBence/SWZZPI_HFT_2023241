@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SWZZPI_HFT_2023241.Logic
 {
-    interface IAbilitiesLogic
+    public interface IAbilitiesLogic
     {
         void Create(Abilities ability);
         Abilities Read(int id);

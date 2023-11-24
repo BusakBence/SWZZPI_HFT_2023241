@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SWZZPI_HFT_2023241.Logic
 {
-    interface IChampionsLogic
+     public interface IChampionsLogic
     {
         void Create(Champions champion);
         Champions Read(int id);

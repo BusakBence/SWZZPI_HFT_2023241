@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SWZZPI_HFT_2023241.Logic
 {
-    interface IRegionsLogic
+    public interface IRegionsLogic
     {
         void Create(Regions region);
         Regions Read(int id);

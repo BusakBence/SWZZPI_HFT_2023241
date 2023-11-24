@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using SWZZPI_HFT_2023241.Logic;
+using SWZZPI_HFT_2023241.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,36 +11,35 @@ namespace SWZZPI_HFT_2023241.Endpoint
     [ApiController]
     public class RegionsController : ControllerBase
     {
-        // GET: api/<RegionsController>
+        public IRegionsLogic RegionsLogic;
+        public RegionsController(IRegionsLogic regionsLogic)
+        {
+            this.RegionsLogic = regionsLogic;
+        }
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Regions> ReadAll()
         {
-            return new string[] { "value1", "value2" };
+            return this.RegionsLogic.ReadAll();
         }
-
-        // GET api/<RegionsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Regions Read(int id)
         {
-            return "value";
+            return this.RegionsLogic.Read(id);
         }
-
-        // POST api/<RegionsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Create([FromBody] Regions region)
         {
+            this.RegionsLogic.Create(region);
         }
-
-        // PUT api/<RegionsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Update([FromBody] Regions region)
         {
+            this.RegionsLogic.Update(region);
         }
-
-        // DELETE api/<RegionsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            this.RegionsLogic.Delete(id);
         }
     }
 }
