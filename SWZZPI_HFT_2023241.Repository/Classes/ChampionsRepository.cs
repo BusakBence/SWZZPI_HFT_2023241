@@ -20,6 +20,6 @@ namespace SWZZPI_HFT_2023241.Repository
                 prop.SetValue(old, prop.GetValue(item));
             }
             ctx.SaveChanges();
-        }
+        }      
     }
 }

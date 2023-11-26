@@ -5,9 +5,9 @@ namespace SWZZPI_HFT_2023241.Repository
 {
     public class LolDBContext : DbContext
     {
-        public DbSet<Abilities> Abilities { get; set; }
-        public DbSet<Champions> Champions { get; set; }
-        public DbSet<Regions> Regions { get; set; }
+        public virtual DbSet<Abilities> Abilities { get; set; }
+        public virtual DbSet<Champions> Champions { get; set; }
+        public virtual DbSet<Regions> Regions { get; set; }
         public LolDBContext()
         {
             this.Database.EnsureCreated();
@@ -42,9 +42,9 @@ namespace SWZZPI_HFT_2023241.Repository
                     new Regions("5*Freljord*North*Low*Tribal Matriarchy*Tundra"),
                     new Regions("6*Piltover*Middle*High*Aristocratic Oligarchy*Metropolis"),
                     new Regions("7*Zaun*Middle*High*Industrial Oligarchy*Urbanized"),
-                    new Regions("8*Bandle City*South*Unknown*None*Unknown"),
+                    new Regions("8*BandleCity*South*Unknown*None*Unknown"),
                     new Regions("9*Bilgewater*East*Medium*Gang Syndicates*Archipelago"),
-                    new Regions("10*Shadow Isles*South-East*Low*None*Archipelago"),
+                    new Regions("10*ShadowIsles*South-East*Low*None*Archipelago"),
                     new Regions("11*The Void*South*Unknown*None*Unknown"),
                     new Regions("12*Ixtal*South*Alchemical*Magical Autocracy*Rainforest"),
                     new Regions("13*Targon*South-West*Low*Tribal Theocracy*Mountains"),
