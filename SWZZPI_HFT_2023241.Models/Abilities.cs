@@ -9,17 +9,14 @@ namespace SWZZPI_HFT_2023241.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        [StringLength(240)]
+        [StringLength(100)]
         public string Name { get; set; }
         [Required]
-        public char AbilityKey { get; set; }
-        [Required, ForeignKey(nameof(Champion))]
-        public int ChampionId { get; set; }
-        public virtual Champions Champion { get; set; }
-        public Abilities()
-        {
-
-        }
+        public char AbilityKey { get; set; }   
+        [Required]
+        public int ChampionId { get; set; }    
+        [ForeignKey(nameof(ChampionId))]
+        public virtual Champions Champion { get; set; }    
         public Abilities(string line)
         {
             string[] split = line.Split('*');

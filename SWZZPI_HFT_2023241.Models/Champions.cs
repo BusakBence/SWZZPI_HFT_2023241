@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SWZZPI_HFT_2023241.Models
 {
@@ -10,23 +11,25 @@ namespace SWZZPI_HFT_2023241.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        [StringLength(240)]
+        [StringLength(100)]
         public string Name { get; set; }
+        [StringLength(100)]
         public string Gender { get; set; }
-        public string Species { get; set; }
-        [Required]
+        [StringLength(100)]
+        public string Species { get; set; }        
+        [StringLength(100)]
         public string Lane { get; set; }
         [Required]
         public int ReleaseYear { get; set; }
-        [Required, ForeignKey(nameof(Region))]
-        public int RegionsId { get; set; }
+        [Required]
+        public int RegionsId { get; set; } 
+        [ForeignKey(nameof(RegionsId))]
         public virtual Regions Region { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Abilities> Abilities { get; set; }
-        public virtual ICollection<Regions> Regions { get; set; }
         public Champions()
         {
             Abilities = new HashSet<Abilities>();
-            Regions = new HashSet<Regions>();
         }
         public Champions(string line)
         {

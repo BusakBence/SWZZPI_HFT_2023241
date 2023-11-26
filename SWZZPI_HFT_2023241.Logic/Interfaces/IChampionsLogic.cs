@@ -1,4 +1,5 @@
 ﻿using SWZZPI_HFT_2023241.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SWZZPI_HFT_2023241.Logic
@@ -10,6 +11,5 @@ namespace SWZZPI_HFT_2023241.Logic
         IQueryable<Champions> ReadAll();
         void Update(Champions champion);
         void Delete(int id);
-
     }
 }
