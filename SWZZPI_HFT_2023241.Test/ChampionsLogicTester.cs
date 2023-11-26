@@ -44,7 +44,7 @@ namespace SWZZPI_HFT_2023241.Test
             {
                 new Abilities("1*Képesség*C*2"),
                 new Abilities("2*Remek*U*1"),
-                new Abilities("3*Hukk*M*4"),
+                new Abilities("3*Hukk*R*3"),
                 new Abilities("4*Pukk*I*5"),
                 new Abilities("5*Darum*N*3")
             }.AsQueryable);
@@ -58,6 +58,13 @@ namespace SWZZPI_HFT_2023241.Test
             var expectedHeroes = new List<ShurimaHeros> { new ShurimaHeros() { Name = "Ábel", Region = "Shurima", Year = 2015 } };
             var actualHeroes = championsLogic.GetShurimaChampionsBetween2012And2016();
             CollectionAssert.AreEqual(expectedHeroes, actualHeroes);
+        }
+        [Test]
+        public void GetFemalesUltimatesTest()
+        {
+            var expectedUltimates = new List<FemalesUltimates> { new FemalesUltimates() { Name = "Rebeka", AbilityName = "Hukk" } };
+            var actualUltimates = championsLogic.GetFemalesUltimates();
+            CollectionAssert.AreEqual(expectedUltimates, actualUltimates);
         }
     }
 }
