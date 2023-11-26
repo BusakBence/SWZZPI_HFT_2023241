@@ -1,6 +1,7 @@
 ﻿using SWZZPI_HFT_2023241.Models;
 using SWZZPI_HFT_2023241.Repository;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SWZZPI_HFT_2023241.Logic
@@ -52,6 +53,45 @@ namespace SWZZPI_HFT_2023241.Logic
         public void Update(Champions champion)
         {
             this.ChampionsRepo.Update(champion);
+        }
+        public List<ShurimaHeros> GetShurimaChampionsBetween2012And2016()
+        {
+            var champions = ChampionsRepo.ReadAll();
+            var regions = RegionsRepo.ReadAll();  
+
+            var result = from champion in champions
+                         join region in regions on champion.RegionsId equals region.Id
+                         where champion.Name != null && region.Name == "Shurima" && champion.ReleaseYear >= 2012 && champion.ReleaseYear <= 2016
+                         select new ShurimaHeros()
+                         {
+                             Name = champion.Name,
+                             Region = region.Name,
+                             Year = champion.ReleaseYear
+                         };
+
+            return result.ToList();
+        }
+    }
+    public class ShurimaHeros
+    {
+        public string Name { get; set; }
+        public string Region { get; set; }
+        public int Year { get; set; }
+        public override bool Equals(object obj)
+        {
+            ShurimaHeros b = obj as ShurimaHeros;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.Region == b.Region && this.Year == b.Year; 
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.Region, this.Year);
         }
     }
 }
