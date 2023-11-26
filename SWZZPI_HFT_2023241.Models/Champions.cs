@@ -20,8 +20,7 @@ namespace SWZZPI_HFT_2023241.Models
         [StringLength(100)]
         public string Lane { get; set; }
         [Required]
-        public int ReleaseYear { get; set; }
-        [Required]
+        public int ReleaseYear { get; set; }       
         public int RegionsId { get; set; } 
         [ForeignKey(nameof(RegionsId))]
         public virtual Regions Region { get; set; }

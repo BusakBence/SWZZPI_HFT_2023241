@@ -61,7 +61,7 @@ namespace SWZZPI_HFT_2023241.Logic
 
             var result = from champion in champions
                          join region in regions on champion.RegionsId equals region.Id
-                         where champion.Name != null && region.Name == "Shurima" && champion.ReleaseYear >= 2012 && champion.ReleaseYear <= 2016
+                         where region.Name == "Shurima" && champion.ReleaseYear >= 2012 && champion.ReleaseYear <= 2016
                          select new ShurimaHeros()
                          {
                              Name = champion.Name,
@@ -69,6 +69,20 @@ namespace SWZZPI_HFT_2023241.Logic
                              Year = champion.ReleaseYear
                          };
 
+            return result.ToList();
+        }
+        public List<FemalesUltimates> GetFemalesUltimates()
+        {
+            var champions = ChampionsRepo.ReadAll();
+            var abilities = AbilitiesRepo.ReadAll();
+            var result = from ability in abilities
+                        join champion in champions on ability.ChampionId equals champion.Id
+                        where champion.Gender == "Female" && ability.AbilityKey == 'R'
+                        select new FemalesUltimates
+                        {
+                            Name = champion.Name,
+                            AbilityName = ability.Name
+                        };
             return result.ToList();
         }
     }
@@ -92,6 +106,27 @@ namespace SWZZPI_HFT_2023241.Logic
         public override int GetHashCode()
         {
             return HashCode.Combine(this.Name, this.Region, this.Year);
+        }
+    }
+    public class FemalesUltimates
+    {
+        public string Name { get; set; }
+        public string AbilityName { get; set; }
+        public override bool Equals(object obj)
+        {
+            FemalesUltimates b = obj as FemalesUltimates;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.AbilityName == b.AbilityName;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.AbilityName);
         }
     }
 }

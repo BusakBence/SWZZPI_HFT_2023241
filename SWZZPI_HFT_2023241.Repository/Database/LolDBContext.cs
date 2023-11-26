@@ -5,9 +5,9 @@ namespace SWZZPI_HFT_2023241.Repository
 {
     public class LolDBContext : DbContext
     {
-        public virtual DbSet<Abilities> Abilities { get; set; }
-        public virtual DbSet<Champions> Champions { get; set; }
-        public virtual DbSet<Regions> Regions { get; set; }
+        public DbSet<Abilities> Abilities { get; set; }
+        public DbSet<Champions> Champions { get; set; }
+        public DbSet<Regions> Regions { get; set; }
         public LolDBContext()
         {
             this.Database.EnsureCreated();

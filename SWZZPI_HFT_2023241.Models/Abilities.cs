@@ -16,7 +16,11 @@ namespace SWZZPI_HFT_2023241.Models
         [Required]
         public int ChampionId { get; set; }    
         [ForeignKey(nameof(ChampionId))]
-        public virtual Champions Champion { get; set; }    
+        public virtual Champions Champion { get; set; }
+        public Abilities()
+        {
+
+        }
         public Abilities(string line)
         {
             string[] split = line.Split('*');
