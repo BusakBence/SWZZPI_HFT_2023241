@@ -8,6 +8,10 @@ namespace SWZZPI_HFT_2023241.Logic
     public class AbilitiesLogic : IAbilitiesLogic
     {
         public IRepository<Abilities> repo;
+        public AbilitiesLogic(IRepository<Abilities> repo)
+        {
+            this.repo = repo;
+        }
         public void Create(Abilities ability)
         {
             if (ability.Name.Length <= 3)
