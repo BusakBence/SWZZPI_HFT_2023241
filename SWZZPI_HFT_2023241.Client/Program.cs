@@ -43,7 +43,35 @@ namespace SWZZPI_HFT_2023241.Client
             }
         }
         #endregion
-        
+        #region Creates
+        static void CreateChampions(string champion)
+        {
+            if (champion == "Champion")
+            {
+                Console.Write("Enter the champion's name: ");
+                string name = Console.ReadLine();
+                restService.Post(new Champions() { Name = name }, "champion");
+            }
+        }
+        static void CreateRegions(string region)
+        {
+            if (region == "Region")
+            {
+                Console.Write("Enter the region's name: ");
+                string name = Console.ReadLine();
+                restService.Post(new Regions() { Name = name }, "region");
+            }
+        }
+        static void CreateAbilities(string ability)
+        {
+            if (ability == "Ability")
+            {
+                Console.Write("Enter the ability's name: ");
+                string name = Console.ReadLine();
+                restService.Post(new Abilities() { Name = name }, "ability");
+            }
+        }
+        #endregion
         static void Main(string[] args)
         {
             restService = new RestService("http://localhost:30487/");           
