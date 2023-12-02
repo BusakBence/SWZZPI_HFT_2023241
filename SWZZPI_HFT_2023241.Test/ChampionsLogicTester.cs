@@ -34,10 +34,10 @@ namespace SWZZPI_HFT_2023241.Test
             mockRegionsRepo.Setup(x => x.ReadAll()).Returns(new List<Regions>()
             {
                 new Regions("1*Shurima*Közép*Közepes*Köztársaság*Kontinentális"),
-                new Regions("2*Olaszország*Dél*Magas*Köztársaság*Mediterrán"),
-                new Regions("3*Finnország*Észak*Magas*Köztársaság*Tundra"),
-                new Regions("4*Portugália*Nyugat*Közepes*Köztársaság*Mediterrán"),
-                new Regions("5*Görögország*Kelet*Közepes*Köztársaság*Mediterrán")
+                new Regions("2*Noxus*Dél*Magas*Köztársaság*Mediterrán"),
+                new Regions("3*Ionia*Észak*Magas*Köztársaság*Tundra"),
+                new Regions("4*Demacia*Nyugat*Közepes*Köztársaság*Mediterrán"),
+                new Regions("5*Freljord*Kelet*Közepes*Köztársaság*Mediterrán")
             }.AsQueryable);
             mockAbilitiesRepo = new Mock<IRepository<Abilities>>();
             mockAbilitiesRepo.Setup(y => y.ReadAll()).Returns(new List<Abilities>()
