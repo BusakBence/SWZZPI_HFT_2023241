@@ -42,7 +42,7 @@ namespace SWZZPI_HFT_2023241.Repository
                     new Regions("5*Freljord*North*Low*Tribal Matriarchy*Tundra"),
                     new Regions("6*Piltover*Middle*High*Aristocratic Oligarchy*Metropolis"),
                     new Regions("7*Zaun*Middle*High*Industrial Oligarchy*Urbanized"),
-                    new Regions("8*BandleCity*South*Unknown*None*Unknown"),
+                    new Regions("8*BandleCity*Unknown*Unknown*None*Unknown"),
                     new Regions("9*Bilgewater*East*Medium*Gang Syndicates*Archipelago"),
                     new Regions("10*ShadowIsles*South-East*Low*None*Archipelago"),
                     new Regions("11*The Void*South*Unknown*None*Unknown"),
@@ -152,7 +152,7 @@ namespace SWZZPI_HFT_2023241.Repository
                 new Champions("98*Qiyana*Female*Human*Jungle, Middle*2019*12"),
                 new Champions("99*Quinn*Female*Human*Top, Middle*2013*4"),
                 new Champions("100*Rakan*Male*Vastayan*Support*2017*3"),
-                new Champions("101*Rammus*Male*Jungle*2009*1"),
+                new Champions("101*Rammus*Male*Unknown*Jungle*2009*1"),
                 new Champions("102*Rek'Sai*Female*Void being*Jungle*2014*11"),
                 new Champions("103*Rell*Female*Human*Jungle, Support*2020*2"),
                 new Champions("104*Renata Glasc*Human*Female*Support*2022*7"),
@@ -216,7 +216,7 @@ namespace SWZZPI_HFT_2023241.Repository
                 new Champions("162*Ziggs*Male*Yordle*Middle, Bottom*2012*7"),
                 new Champions("163*Zilean*Male*Human*Support*2009*14"),
                 new Champions("164*Zoe*Female*Aspect*Middle, Support*2017*13"),
-                new Champions("165*Zyra*Female*Unknown*Support*2012*12"),
+                new Champions("165*Zyra*Female*Unknown*Support*2012*12") 
             });
             modelBuilder.Entity<Abilities>().HasData(new Abilities[]
                 {
@@ -1076,7 +1076,7 @@ namespace SWZZPI_HFT_2023241.Repository
                     new Abilities("854*Zap!*W*52"),
                     new Abilities("855*Zenith Blade*E*69"),
                     new Abilities("856*Zephyr*W*47"),
-                    new Abilities("857*Zoomies*E*158"),                    
+                    new Abilities("857*Zoomies*E*158")                    
                 });
         }
     }
