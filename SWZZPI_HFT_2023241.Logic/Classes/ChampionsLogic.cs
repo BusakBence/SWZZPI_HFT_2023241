@@ -54,7 +54,7 @@ namespace SWZZPI_HFT_2023241.Logic
         {
             this.ChampionsRepo.Update(champion);
         }
-        public List<ShurimaHeros> GetShurimaChampionsBetween2012And2016()
+        public List<ShurimaChampions> GetShurimaChampionsBetween2012And2016()
         {
             var champions = ChampionsRepo.ReadAll();
             var regions = RegionsRepo.ReadAll();  
@@ -62,7 +62,7 @@ namespace SWZZPI_HFT_2023241.Logic
             var result = from champion in champions
                          join region in regions on champion.RegionsId equals region.Id
                          where region.Name == "Shurima" && champion.ReleaseYear >= 2012 && champion.ReleaseYear <= 2016
-                         select new ShurimaHeros()
+                         select new ShurimaChampions()
                          {
                              Name = champion.Name,
                              Region = region.Name,
@@ -85,15 +85,42 @@ namespace SWZZPI_HFT_2023241.Logic
                         };
             return result.ToList();
         }
+        public int AllIonianChampions()
+        {
+            var champions = ChampionsRepo.ReadAll();
+            var regions = RegionsRepo.ReadAll();
+            int result = (from champion in champions
+                         join region in regions on champion.RegionsId equals region.Id
+                         where region.Name == "Ionia"
+                         select champion).Count();
+            return result;  
+        }
+     /*   public List<Abilities> DemacianAbilities()
+        {
+            var champions = ChampionsRepo.ReadAll();
+            var regions = RegionsRepo.ReadAll();
+            var abilities = AbilitiesRepo.ReadAll();
+            var result = from champion in champions
+                         join ability in abilities on champion.Id equals ability.ChampionId
+                         join region in regions on champion.RegionsId equals region.Id
+                         where region.Name == "Demacia"
+                         select new DemacianAbilities
+                         {
+                             Name = ability.Name,
+                             Key = ability.AbilityKey,
+                             Region = region.Name
+                         };
+            return result.ToList();
+        }*/
     }
-    public class ShurimaHeros
+    public class ShurimaChampions
     {
         public string Name { get; set; }
         public string Region { get; set; }
         public int Year { get; set; }
         public override bool Equals(object obj)
         {
-            ShurimaHeros b = obj as ShurimaHeros;
+            ShurimaChampions b = obj as ShurimaChampions;
             if (b == null)
             {
                 return false;
@@ -127,6 +154,28 @@ namespace SWZZPI_HFT_2023241.Logic
         public override int GetHashCode()
         {
             return HashCode.Combine(this.Name, this.AbilityName);
+        }
+    }
+    public class DemacianAbilities
+    {
+        public string Name { get; set; }
+        public char Key { get; set; }
+        public string Region { get; set; }
+        public override bool Equals(object obj)
+        {
+            DemacianAbilities b = obj as DemacianAbilities;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.Key == b.Key && this.Region == b.Region;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.Key, this.Region);
         }
     }
 }
