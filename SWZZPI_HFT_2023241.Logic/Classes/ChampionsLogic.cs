@@ -95,11 +95,12 @@ namespace SWZZPI_HFT_2023241.Logic
                          select champion).Count();
             return result;  
         }
-     /*   public List<Abilities> DemacianAbilities()
+        public List<DemacianAbilities> DemacianAbilities()
         {
             var champions = ChampionsRepo.ReadAll();
             var regions = RegionsRepo.ReadAll();
             var abilities = AbilitiesRepo.ReadAll();
+
             var result = from champion in champions
                          join ability in abilities on champion.Id equals ability.ChampionId
                          join region in regions on champion.RegionsId equals region.Id
@@ -111,7 +112,7 @@ namespace SWZZPI_HFT_2023241.Logic
                              Region = region.Name
                          };
             return result.ToList();
-        }*/
+        }
     }
     public class ShurimaChampions
     {
