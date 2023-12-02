@@ -72,6 +72,35 @@ namespace SWZZPI_HFT_2023241.Client
             }
         }
         #endregion
+        #region Deletes
+        static void DeleteChampions(string champion)
+        {
+            if (champion == "Champion")
+            {
+                Console.Write("Enter champion's id: ");
+                int id = int.Parse(Console.ReadLine());
+                restService.Delete(id, "champion");
+            }
+        }
+        static void DeleteRegions(string region)
+        {
+            if (region == "Region")
+            {
+                Console.Write("Enter region's id: ");
+                int id = int.Parse(Console.ReadLine());
+                restService.Delete(id, "region");
+            }
+        } 
+        static void DeleteAbilities(string ability)
+        {
+            if (ability == "Ability")
+            {
+                Console.Write("Enter ability's id: ");
+                int id = int.Parse(Console.ReadLine());
+                restService.Delete(id, "ability");
+            }
+        }
+        #endregion
         static void Main(string[] args)
         {
             restService = new RestService("http://localhost:30487/");           
