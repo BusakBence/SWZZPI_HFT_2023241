@@ -46,16 +46,16 @@ namespace SWZZPI_HFT_2023241.Test
                 new Abilities("2*Remek*U*1"),
                 new Abilities("3*Hukk*R*3"),
                 new Abilities("4*Pukk*I*5"),
-                new Abilities("5*Darum*N*3")
+                new Abilities("5*Darum*N*4")
             }.AsQueryable);
             championsLogic = new ChampionsLogic(mockChampionsRepo.Object, mockRegionsRepo.Object, mockAbilitiesRepo.Object);
             regionsLogic = new RegionsLogic(mockRegionsRepo.Object);
-            abilitiesLogic = new AbilitiesLogic();
+            abilitiesLogic = new AbilitiesLogic(mockAbilitiesRepo.Object);
         }
         [Test]
         public void GetShurimaChampionsBetween2012And2016Test()
         {
-            var expectedHeroes = new List<ShurimaHeros> { new ShurimaHeros() { Name = "Ábel", Region = "Shurima", Year = 2015 } };
+            var expectedHeroes = new List<ShurimaChampions> { new ShurimaChampions() { Name = "Ábel", Region = "Shurima", Year = 2015 } };
             var actualHeroes = championsLogic.GetShurimaChampionsBetween2012And2016();
             CollectionAssert.AreEqual(expectedHeroes, actualHeroes);
         }
@@ -65,6 +65,12 @@ namespace SWZZPI_HFT_2023241.Test
             var expectedUltimates = new List<FemalesUltimates> { new FemalesUltimates() { Name = "Rebeka", AbilityName = "Hukk" } };
             var actualUltimates = championsLogic.GetFemalesUltimates();
             CollectionAssert.AreEqual(expectedUltimates, actualUltimates);
+        }
+        [Test]
+        public void AllIonianChampionsTest()
+        {
+            var actualIonians = championsLogic.AllIonianChampions();
+            Assert.AreEqual(1, actualIonians);
         }
     }
 }
