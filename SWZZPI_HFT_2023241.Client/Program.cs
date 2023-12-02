@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SWZZPI_HFT_2023241.Client
 {
-    class Program
+    public class Program
     {
         static RestService restService;
         #region Lists
@@ -13,34 +13,40 @@ namespace SWZZPI_HFT_2023241.Client
         {
             if (champion == "Champion")
             {
-                List<Champions> champions = restService.Get<Champions>("champion");
+                List<Champions> champions = restService.Get<Champions>("champions");
+                Console.WriteLine("Champions: ");
                 foreach (var item in champions)
                 {
-                    Console.WriteLine(item.Id + "" + item.Name);
+                    Console.WriteLine(item.Id + ": " + item.Name);
                 }
             }
+            Console.ReadLine();
         }
         static void ListRegions(string region)
         {
             if (region == "Region")
             {
-                List<Regions> regions = restService.Get<Regions>("region");
+                List<Regions> regions = restService.Get<Regions>("regions");
+                Console.WriteLine("Regions: ");
                 foreach (var item in regions)
                 {
-                    Console.WriteLine(item.Id + "" + item.Name);
+                    Console.WriteLine(item.Id + ": " + item.Name);
                 }
             }
+            Console.ReadLine();
         }
         static void ListAbilities(string ability)
         {
             if (ability == "Ability")
             {
-                List<Abilities> abilities = restService.Get<Abilities>("ability");
+                List<Abilities> abilities = restService.Get<Abilities>("abilities");
+                Console.WriteLine("Abilities: ");
                 foreach (var item in abilities)
                 {
                     Console.WriteLine(item.Id + "" + item.Name);
                 }
             }
+            Console.ReadLine();
         }
         #endregion
         #region Creates
@@ -50,7 +56,7 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter the champion's name: ");
                 string name = Console.ReadLine();
-                restService.Post(new Champions() { Name = name }, "champion");
+                restService.Post(new Champions() { Name = name }, "champions");
             }
         }
         static void CreateRegions(string region)
@@ -59,7 +65,7 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter the region's name: ");
                 string name = Console.ReadLine();
-                restService.Post(new Regions() { Name = name }, "region");
+                restService.Post(new Regions() { Name = name }, "regions");
             }
         }
         static void CreateAbilities(string ability)
@@ -68,7 +74,7 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter the ability's name: ");
                 string name = Console.ReadLine();
-                restService.Post(new Abilities() { Name = name }, "ability");
+                restService.Post(new Abilities() { Name = name }, "abilities");
             }
         }
         #endregion
@@ -79,7 +85,7 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter champion's id: ");
                 int id = int.Parse(Console.ReadLine());
-                restService.Delete(id, "champion");
+                restService.Delete(id, "champions");
             }
         }
         static void DeleteRegions(string region)
@@ -88,7 +94,7 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter region's id: ");
                 int id = int.Parse(Console.ReadLine());
-                restService.Delete(id, "region");
+                restService.Delete(id, "regions");
             }
         } 
         static void DeleteAbilities(string ability)
@@ -97,7 +103,7 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter ability's id: ");
                 int id = int.Parse(Console.ReadLine());
-                restService.Delete(id, "ability");
+                restService.Delete(id, "abilities");
             }
         }
         #endregion
@@ -144,7 +150,7 @@ namespace SWZZPI_HFT_2023241.Client
 #endregion
         static void Main(string[] args)
         {
-            restService = new RestService("http://localhost:30487/", "lol");
+            restService = new RestService("http://localhost:30487/");
             var championsMenu = new ConsoleMenu(args, level: 1)
                                 .Add("List", () => ListChampions("Champion"))
                                 .Add("Create", () => CreateChampions("Champion"))
@@ -169,6 +175,7 @@ namespace SWZZPI_HFT_2023241.Client
                        .Add("Abilities", () => abilitiesMenu.Show())
                        .Add("Exit", ConsoleMenu.Close);
             menu.Show();
+           
         }
     }
 }
