@@ -144,7 +144,31 @@ namespace SWZZPI_HFT_2023241.Client
 #endregion
         static void Main(string[] args)
         {
-            restService = new RestService("http://localhost:30487/");           
+            restService = new RestService("http://localhost:30487/");
+            var championsMenu = new ConsoleMenu(args, level: 1)
+                                .Add("List", () => ListChampions("Champion"))
+                                .Add("Create", () => CreateChampions("Champion"))
+                                .Add("Delete", () => DeleteChampions("Champion"))
+                                .Add("Update", () => UpdateChampions("Champion"))
+                                .Add("Exit", ConsoleMenu.Close);
+            var regionsMenu = new ConsoleMenu(args, level: 1)
+                                .Add("List", () => ListRegions("Region"))
+                                .Add("Create", () => CreateRegions("Region"))
+                                .Add("Delete", () => DeleteRegions("Region"))
+                                .Add("Update", () => UpdateRegions("Region"))
+                                .Add("Exit", ConsoleMenu.Close);
+            var abilitiesMenu = new ConsoleMenu(args, level: 1)
+                                .Add("List", () => ListAbilities("Ability"))
+                                .Add("Create", () => CreateAbilities("Ability"))
+                                .Add("Delete", () => DeleteAbilities("Ability"))
+                                .Add("Update", () => UpdateAbilities("Ability"))
+                                .Add("Exit", ConsoleMenu.Close);
+            var menu = new ConsoleMenu(args, level: 0)
+                       .Add("Champions", () => championsMenu.Show())
+                       .Add("Regions", () => regionsMenu.Show())
+                       .Add("Abilities", () => abilitiesMenu.Show())
+                       .Add("Exit", ConsoleMenu.Close);
+            menu.Show();
         }
     }
 }
