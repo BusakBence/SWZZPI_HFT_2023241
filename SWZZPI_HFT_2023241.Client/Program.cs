@@ -144,7 +144,7 @@ namespace SWZZPI_HFT_2023241.Client
 #endregion
         static void Main(string[] args)
         {
-            restService = new RestService("http://localhost:30487/");
+            restService = new RestService("http://localhost:30487/", "lol");
             var championsMenu = new ConsoleMenu(args, level: 1)
                                 .Add("List", () => ListChampions("Champion"))
                                 .Add("Create", () => CreateChampions("Champion"))
