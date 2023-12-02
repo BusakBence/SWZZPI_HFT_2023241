@@ -72,5 +72,12 @@ namespace SWZZPI_HFT_2023241.Test
             var actualIonians = championsLogic.AllIonianChampions();
             Assert.AreEqual(1, actualIonians);
         }
+        [Test]
+        public void DemacianAbilitiesTest()
+        {
+            var expectedAbilities = new List<DemacianAbilities> { new DemacianAbilities() { Name = "Darum", Key = 'N', Region = "Demacia" } };
+            var actualAbilities = championsLogic.DemacianAbilities();
+            CollectionAssert.AreEqual(expectedAbilities, actualAbilities);
+        }
     }
 }
