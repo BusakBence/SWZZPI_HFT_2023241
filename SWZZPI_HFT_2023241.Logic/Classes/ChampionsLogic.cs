@@ -113,7 +113,23 @@ namespace SWZZPI_HFT_2023241.Logic
                          };
             return result.ToList();
         }
+        public List<DChampionsPAbilities> DChampionsPAbilities()
+        {
+            var champions = ChampionsRepo.ReadAll();
+            var abilities = AbilitiesRepo.ReadAll();
+
+            var result = from champion in champions
+                         join ability in abilities on champion.Id equals ability.ChampionId
+                         where champion.Name.StartsWith("D") && ability.AbilityKey == 'P'
+                         select new DChampionsPAbilities
+                         {
+                             Name = champion.Name,
+                             Key = ability.AbilityKey
+                         };
+            return result.ToList();
+        }      
     }
+    
     public class ShurimaChampions
     {
         public string Name { get; set; }
@@ -177,6 +193,27 @@ namespace SWZZPI_HFT_2023241.Logic
         public override int GetHashCode()
         {
             return HashCode.Combine(this.Name, this.Key, this.Region);
+        }
+    }
+    public  class DChampionsPAbilities
+    {
+        public string Name { get; set; }
+        public char Key { get; set; }
+        public override bool Equals(object obj)
+        {
+            DChampionsPAbilities b = obj as DChampionsPAbilities;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.Key == b.Key;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.Key);
         }
     }
 }
