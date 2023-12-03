@@ -9,10 +9,6 @@ using Microsoft.OpenApi.Models;
 using SWZZPI_HFT_2023241.Logic;
 using SWZZPI_HFT_2023241.Models;
 using SWZZPI_HFT_2023241.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SWZZPI_HFT_2023241.Endpoint
 {
@@ -22,28 +18,23 @@ namespace SWZZPI_HFT_2023241.Endpoint
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
-        }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        
+        }                
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<LolDBContext>();
+            services.AddSingleton<LolDBContext>();
             services.AddTransient<IRepository<Champions>, ChampionsRepository>();
             services.AddTransient<IRepository<Regions>, RegionsRepository>();
             services.AddTransient<IRepository<Abilities>, AbilitiesRepository>();
             services.AddTransient<IChampionsLogic, ChampionsLogic>();
             services.AddTransient<IRegionsLogic, RegionsLogic>();
             services.AddTransient<IAbilitiesLogic, AbilitiesLogic>();
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "SWZZPI_HFT_2023241.Endpoint", Version = "v1" });
-            });
-            
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            });            
+        }       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -59,7 +50,7 @@ namespace SWZZPI_HFT_2023241.Endpoint
                                 .Error;
                 var response = new { Msg = exception.Message };
                 await c.Response.WriteAsJsonAsync(response);
-            }));
+            }));          
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
