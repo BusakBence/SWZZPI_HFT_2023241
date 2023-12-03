@@ -3,7 +3,6 @@ using NUnit.Framework;
 using SWZZPI_HFT_2023241.Logic;
 using SWZZPI_HFT_2023241.Models;
 using SWZZPI_HFT_2023241.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,8 +12,6 @@ namespace SWZZPI_HFT_2023241.Test
     public class ChampionsLogicTester
     {
         ChampionsLogic championsLogic;
-        RegionsLogic regionsLogic;
-        AbilitiesLogic abilitiesLogic;
         Mock<IRepository<Champions>> mockChampionsRepo;
         Mock<IRepository<Regions>> mockRegionsRepo;
         Mock<IRepository<Abilities>> mockAbilitiesRepo;
@@ -24,40 +21,80 @@ namespace SWZZPI_HFT_2023241.Test
             mockChampionsRepo = new Mock<IRepository<Champions>>();
             mockChampionsRepo.Setup(t => t.ReadAll()).Returns(new List<Champions>()
             {
-                new Champions("1*Janos*Male*Human*Middle*2011*3"),
-                new Champions("2*Dániel*Male*Demon*Bottom*2009*2"),
-                new Champions("3*Rebeka*Female*Yordle*Top*2017*5"),
-                new Champions("4*Imre*Male*Vastayan*Support*2021*4*"),
-                new Champions("5*Ábel*Male*God*Jungle*2015*1")
-            }.AsQueryable);
+                
+                new Champions() { Id = 1, Name = "Janos", Gender = "Male", Species = "Human", Lane = "Middle", ReleaseYear = 2011, RegionsId = 3},
+                new Champions() { Id = 2, Name = "Daniel", Gender = "Male", Species = "Demon", Lane = "Bottom", ReleaseYear = 2009, RegionsId = 2},
+                new Champions() { Id = 3, Name = "Rebeka", Gender = "Female", Species = "Yordle", Lane = "Top", ReleaseYear = 2017, RegionsId = 5},
+                new Champions() { Id = 4, Name = "Imre", Gender = "Male", Species = "Vastayan", Lane = "Support", ReleaseYear = 2021, RegionsId = 4},
+                new Champions() { Id = 5, Name = "Abel", Gender = "Male", Species = "God", Lane = "Jungle", ReleaseYear = 2015, RegionsId = 1},               
+            }.AsQueryable());
             mockRegionsRepo = new Mock<IRepository<Regions>>();
             mockRegionsRepo.Setup(x => x.ReadAll()).Returns(new List<Regions>()
             {
-                new Regions("1*Shurima*Közép*Közepes*Köztársaság*Kontinentális"),
-                new Regions("2*Noxus*Dél*Magas*Köztársaság*Mediterrán"),
-                new Regions("3*Ionia*Észak*Magas*Köztársaság*Tundra"),
-                new Regions("4*Demacia*Nyugat*Közepes*Köztársaság*Mediterrán"),
-                new Regions("5*Freljord*Kelet*Közepes*Köztársaság*Mediterrán")
-            }.AsQueryable);
+                new Regions() {Id = 1, Name = "Shurima", Location = "Közép", TechnologyLevel = "Közepes", FormOfGovernment = "Köztársaság", Environment = "Kontinentális" },
+                new Regions() {Id = 2, Name = "Noxus", Location = "Dél", TechnologyLevel = "Magas", FormOfGovernment = "Köztársaság", Environment = "Kontinentális" },
+                new Regions() {Id = 3, Name = "Ionia", Location = "Észak", TechnologyLevel = "Magas", FormOfGovernment = "Köztársaság", Environment = "Kontinentális" },
+                new Regions() {Id = 4, Name = "Demacia", Location = "Nyugat", TechnologyLevel = "Közepes", FormOfGovernment = "Köztársaság", Environment = "Kontinentális" },
+                new Regions() {Id = 5, Name = "Freljord", Location = "Kelet", TechnologyLevel = "Közepes", FormOfGovernment = "Köztársaság", Environment = "Kontinentális" },                
+            }.AsQueryable());
             mockAbilitiesRepo = new Mock<IRepository<Abilities>>();
             mockAbilitiesRepo.Setup(y => y.ReadAll()).Returns(new List<Abilities>()
             {
-                new Abilities("1*Képesség*P*2"),
-                new Abilities("2*Remek*U*1"),
-                new Abilities("3*Hukk*R*3"),
-                new Abilities("4*Pukk*I*5"),
-                new Abilities("5*Darum*N*4")
-            }.AsQueryable);
-            championsLogic = new ChampionsLogic(mockChampionsRepo.Object, mockRegionsRepo.Object, mockAbilitiesRepo.Object);
-            regionsLogic = new RegionsLogic(mockRegionsRepo.Object);
-            abilitiesLogic = new AbilitiesLogic(mockAbilitiesRepo.Object);
+                new Abilities() { Id = 1, Name = "Kepesseg", AbilityKey = 'P', ChampionId = 2 },
+                new Abilities() { Id = 2, Name = "Remek", AbilityKey = 'Q', ChampionId = 1 },
+                new Abilities() { Id = 3, Name = "Hukk", AbilityKey = 'R', ChampionId = 3 },
+                new Abilities() { Id = 4, Name = "Pukk", AbilityKey = 'E', ChampionId = 5 },
+                new Abilities() { Id = 5, Name = "Darum", AbilityKey = 'W', ChampionId = 4 },
+                
+            }.AsQueryable());
+            foreach (var champion in mockChampionsRepo.Object.ReadAll())
+            {
+                foreach (var ability in mockAbilitiesRepo.Object.ReadAll())
+                {
+                    if (champion.Id == ability.ChampionId)
+                    {
+                        champion.Abilities.Add(ability);
+                    }
+                }
+            }
+            foreach (var region in mockRegionsRepo.Object.ReadAll())
+            {
+                foreach (var champion in mockChampionsRepo.Object.ReadAll())
+                {
+                    if (region.Id == champion.RegionsId)
+                    {
+                        region.Champions.Add(champion);
+                    }
+                }
+            }
+            foreach (var champion in mockChampionsRepo.Object.ReadAll())
+            {
+                foreach (var region  in mockRegionsRepo.Object.ReadAll())
+                {
+                    if (champion.RegionsId == region.Id)
+                    {
+                        champion.Region = region;
+                    }
+                }
+            }   
+            foreach (var ability in mockAbilitiesRepo.Object.ReadAll())
+            {
+                foreach (var champion  in mockChampionsRepo.Object.ReadAll())
+                {
+                    if (ability.ChampionId == champion.Id)
+                    {
+                        ability.Champion = champion;
+                    }
+                }
+            }
+            championsLogic = new ChampionsLogic(mockChampionsRepo.Object, mockRegionsRepo.Object, mockAbilitiesRepo.Object);          
         }
         [Test]
         public void GetShurimaChampionsBetween2012And2016Test()
         {
-            var expectedHeroes = new List<ShurimaChampions> { new ShurimaChampions() { Name = "Ábel", Region = "Shurima", Year = 2015 } };
-            var actualHeroes = championsLogic.GetShurimaChampionsBetween2012And2016();
-            CollectionAssert.AreEqual(expectedHeroes, actualHeroes);
+             var expectedHeroes = new List<ShurimaChampions> { new ShurimaChampions() { Name = "Abel", Region = "Shurima", Year = 2015 } };
+             var actualHeroes = championsLogic.GetShurimaChampionsBetween2012And2016();           
+             CollectionAssert.AreEqual(expectedHeroes, actualHeroes);          
         }
         [Test]
         public void GetFemalesUltimatesTest()
@@ -67,24 +104,24 @@ namespace SWZZPI_HFT_2023241.Test
             CollectionAssert.AreEqual(expectedUltimates, actualUltimates);
         }
         [Test]
-        public void AllIonianChampionsTest()
+        public void GetAllIonianChampionsTest()
         {
-            var actualIonians = championsLogic.AllIonianChampions();
+            int actualIonians = championsLogic.GetAllIonianChampions();   
             Assert.AreEqual(1, actualIonians);
         }
         [Test]
-        public void DemacianAbilitiesTest()
+        public void GetDemacianAbilitiesTest()
         {
-            var expectedAbilities = new List<DemacianAbilities> { new DemacianAbilities() { Name = "Darum", Key = 'N', Region = "Demacia" } };
-            var actualAbilities = championsLogic.DemacianAbilities();
+            var expectedAbilities = new List<DemacianAbilities> { new DemacianAbilities() {  ChampionName = "Imre", Name = "Darum", Key = 'W', Region = "Demacia" } };
+            var actualAbilities = championsLogic.GetDemacianAbilities();
             CollectionAssert.AreEqual(expectedAbilities, actualAbilities);
         }
         [Test]
-        public void DChampionsPAbilitiesTest()
+        public void GetDChampionsPAbilitiesTest()
         {
-            var expectedPAbilities = new List<DChampionsPAbilities> { new DChampionsPAbilities() { Name = "Dániel", Key = 'P' } };
-            var actualPAbilities = championsLogic.DChampionsPAbilities();
+            var expectedPAbilities = new List<DChampionsPAbilities> { new DChampionsPAbilities() { Name = "Daniel", Key = 'P', KeyName = "Kepesseg" } };
+            var actualPAbilities = championsLogic.GetDChampionsPAbilities();
             CollectionAssert.AreEqual(expectedPAbilities, actualPAbilities);
-        }
-    }
+        }     
+    }   
 }
