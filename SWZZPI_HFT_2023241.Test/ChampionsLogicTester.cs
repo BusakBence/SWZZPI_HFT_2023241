@@ -25,7 +25,7 @@ namespace SWZZPI_HFT_2023241.Test
             mockChampionsRepo.Setup(t => t.ReadAll()).Returns(new List<Champions>()
             {
                 new Champions("1*Janos*Male*Human*Middle*2011*3"),
-                new Champions("2*Jozsef*Male*Demon*Bottom*2009*2"),
+                new Champions("2*Dániel*Male*Demon*Bottom*2009*2"),
                 new Champions("3*Rebeka*Female*Yordle*Top*2017*5"),
                 new Champions("4*Imre*Male*Vastayan*Support*2021*4*"),
                 new Champions("5*Ábel*Male*God*Jungle*2015*1")
@@ -42,7 +42,7 @@ namespace SWZZPI_HFT_2023241.Test
             mockAbilitiesRepo = new Mock<IRepository<Abilities>>();
             mockAbilitiesRepo.Setup(y => y.ReadAll()).Returns(new List<Abilities>()
             {
-                new Abilities("1*Képesség*C*2"),
+                new Abilities("1*Képesség*P*2"),
                 new Abilities("2*Remek*U*1"),
                 new Abilities("3*Hukk*R*3"),
                 new Abilities("4*Pukk*I*5"),
@@ -78,6 +78,13 @@ namespace SWZZPI_HFT_2023241.Test
             var expectedAbilities = new List<DemacianAbilities> { new DemacianAbilities() { Name = "Darum", Key = 'N', Region = "Demacia" } };
             var actualAbilities = championsLogic.DemacianAbilities();
             CollectionAssert.AreEqual(expectedAbilities, actualAbilities);
+        }
+        [Test]
+        public void DChampionsPAbilitiesTest()
+        {
+            var expectedPAbilities = new List<DChampionsPAbilities> { new DChampionsPAbilities() { Name = "Dániel", Key = 'P' } };
+            var actualPAbilities = championsLogic.DChampionsPAbilities();
+            CollectionAssert.AreEqual(expectedPAbilities, actualPAbilities);
         }
     }
 }
