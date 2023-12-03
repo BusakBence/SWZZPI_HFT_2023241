@@ -11,5 +11,10 @@ namespace SWZZPI_HFT_2023241.Logic
         IQueryable<Champions> ReadAll();
         void Update(Champions champion);
         void Delete(int id);
+        List<ShurimaChampions> GetShurimaChampionsBetween2012And2016();
+        List<FemalesUltimates> GetFemalesUltimates();
+        int GetAllIonianChampions();
+        List<DemacianAbilities> GetDemacianAbilities();
+        List<DChampionsPAbilities> GetDChampionsPAbilities();
     }
 }

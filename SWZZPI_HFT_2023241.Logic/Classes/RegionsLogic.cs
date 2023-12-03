@@ -7,34 +7,34 @@ namespace SWZZPI_HFT_2023241.Logic
 {
     public class RegionsLogic : IRegionsLogic
     {
-        public IRepository<Regions> repo;
+        public IRepository<Regions> RegionsRepo;
         public RegionsLogic(IRepository<Regions> repo)
         {
-            this.repo = repo;
+            this.RegionsRepo = repo;
         }
         public void Create(Regions region)
         {
-            if (region.Name.Length <= 3)
+            if (region.Name.Length < 3)
             {
                 throw new ArgumentException("Name is too short!");
             }
-            this.repo.Create(region);
+            this.RegionsRepo.Create(region);
         }
         public void Delete(int id)
         {
             try
             {
-                var item = repo.Read(id);
+                var item = RegionsRepo.Read(id);
             }
             catch (Exception)
             {
                 throw new ArgumentException("ID does not exist!");
             }
-            this.repo.Delete(id);
+            this.RegionsRepo.Delete(id);
         }
         public Regions Read(int id)
         {
-            Regions item = repo.Read(id);
+            Regions item = RegionsRepo.Read(id);
             if (item == null)
             {
                 throw new ArgumentException("ID does not exist!");
@@ -43,11 +43,11 @@ namespace SWZZPI_HFT_2023241.Logic
         }
         public IQueryable<Regions> ReadAll()
         {
-            return this.repo.ReadAll();
+            return this.RegionsRepo.ReadAll();
         }
         public void Update(Regions region)
         {
-            this.repo.Update(region);
+            this.RegionsRepo.Update(region);
         }
     }
 }

@@ -13,13 +13,13 @@ namespace SWZZPI_HFT_2023241.Logic
         public IRepository<Abilities> AbilitiesRepo;
         public ChampionsLogic(IRepository<Champions> championsrepo, IRepository<Regions> regionsrepo, IRepository<Abilities> abilitiesrepo)
         {
-            this.ChampionsRepo = championsrepo;
+            this.ChampionsRepo = championsrepo;          
             this.RegionsRepo = regionsrepo;
-            this.AbilitiesRepo = abilitiesrepo;
+            this.AbilitiesRepo = abilitiesrepo;          
         }
         public void Create(Champions champion)
         {
-            if (champion.Name.Length <= 1)
+            if (champion.Name.Length < 3)
             {
                 throw new ArgumentException("Name is too short!");
             }
@@ -55,12 +55,10 @@ namespace SWZZPI_HFT_2023241.Logic
             this.ChampionsRepo.Update(champion);
         }
         public List<ShurimaChampions> GetShurimaChampionsBetween2012And2016()
-        {
-            var champions = ChampionsRepo.ReadAll();
-            var regions = RegionsRepo.ReadAll();  
-
-            var result = from champion in champions
-                         join region in regions on champion.RegionsId equals region.Id
+        {           
+            var regions = RegionsRepo.ReadAll();
+            var result = from region in regions
+                         from champion in region.Champions                         
                          where region.Name == "Shurima" && champion.ReleaseYear >= 2012 && champion.ReleaseYear <= 2016
                          select new ShurimaChampions()
                          {
@@ -68,15 +66,13 @@ namespace SWZZPI_HFT_2023241.Logic
                              Region = region.Name,
                              Year = champion.ReleaseYear
                          };
-
             return result.ToList();
         }
         public List<FemalesUltimates> GetFemalesUltimates()
         {
-            var champions = ChampionsRepo.ReadAll();
-            var abilities = AbilitiesRepo.ReadAll();
-            var result = from ability in abilities
-                        join champion in champions on ability.ChampionId equals champion.Id
+            var champions = ChampionsRepo.ReadAll();            
+            var result = from champion in champions
+                        from ability in champion.Abilities
                         where champion.Gender == "Female" && ability.AbilityKey == 'R'
                         select new FemalesUltimates
                         {
@@ -85,51 +81,47 @@ namespace SWZZPI_HFT_2023241.Logic
                         };
             return result.ToList();
         }
-        public int AllIonianChampions()
+        public int GetAllIonianChampions()
         {
-            var champions = ChampionsRepo.ReadAll();
             var regions = RegionsRepo.ReadAll();
-            int result = (from champion in champions
-                         join region in regions on champion.RegionsId equals region.Id
+            int result = (from region in regions
+                         from champion in region.Champions                        
                          where region.Name == "Ionia"
                          select champion).Count();
             return result;  
         }
-        public List<DemacianAbilities> DemacianAbilities()
+        public List<DemacianAbilities> GetDemacianAbilities()
         {
-            var champions = ChampionsRepo.ReadAll();
             var regions = RegionsRepo.ReadAll();
-            var abilities = AbilitiesRepo.ReadAll();
-
-            var result = from champion in champions
-                         join ability in abilities on champion.Id equals ability.ChampionId
-                         join region in regions on champion.RegionsId equals region.Id
+            var result = from region in regions
+                         from champion in region.Champions
+                         from ability in champion.Abilities
                          where region.Name == "Demacia"
                          select new DemacianAbilities
                          {
+                             ChampionName = champion.Name,
                              Name = ability.Name,
                              Key = ability.AbilityKey,
                              Region = region.Name
+                             
                          };
             return result.ToList();
         }
-        public List<DChampionsPAbilities> DChampionsPAbilities()
+        public List<DChampionsPAbilities> GetDChampionsPAbilities()
         {
-            var champions = ChampionsRepo.ReadAll();
-            var abilities = AbilitiesRepo.ReadAll();
-
+            var champions = ChampionsRepo.ReadAll();           
             var result = from champion in champions
-                         join ability in abilities on champion.Id equals ability.ChampionId
+                         from ability in champion.Abilities
                          where champion.Name.StartsWith("D") && ability.AbilityKey == 'P'
-                         select new DChampionsPAbilities
+                         select new DChampionsPAbilities()
                          {
                              Name = champion.Name,
-                             Key = ability.AbilityKey
-                         };
+                             Key = ability.AbilityKey,
+                             KeyName = ability.Name
+                         };           
             return result.ToList();
-        }      
-    }
-    
+        }          
+    }   
     public class ShurimaChampions
     {
         public string Name { get; set; }
@@ -175,6 +167,7 @@ namespace SWZZPI_HFT_2023241.Logic
     }
     public class DemacianAbilities
     {
+        public string ChampionName { get; set; }
         public string Name { get; set; }
         public char Key { get; set; }
         public string Region { get; set; }
@@ -187,18 +180,19 @@ namespace SWZZPI_HFT_2023241.Logic
             }
             else
             {
-                return this.Name == b.Name && this.Key == b.Key && this.Region == b.Region;
+                return this.ChampionName == b.ChampionName && this.Name == b.Name && this.Key == b.Key && this.Region == b.Region;
             }
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.Name, this.Key, this.Region);
+            return HashCode.Combine(this.ChampionName, this.Name, this.Key, this.Region);
         }
     }
     public  class DChampionsPAbilities
     {
         public string Name { get; set; }
         public char Key { get; set; }
+        public string KeyName { get; set; }
         public override bool Equals(object obj)
         {
             DChampionsPAbilities b = obj as DChampionsPAbilities;
@@ -208,12 +202,12 @@ namespace SWZZPI_HFT_2023241.Logic
             }
             else
             {
-                return this.Name == b.Name && this.Key == b.Key;
+                return this.Name == b.Name && this.Key == b.Key && this.KeyName == b.KeyName;
             }
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.Name, this.Key);
+            return HashCode.Combine(this.Name, this.Key, this.KeyName);
         }
     }
 }
