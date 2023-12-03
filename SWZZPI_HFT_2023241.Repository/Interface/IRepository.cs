@@ -9,6 +9,5 @@ namespace SWZZPI_HFT_2023241.Repository
         void Update(T item);
         void Delete(int id);
         IQueryable<T> ReadAll();
-
     }
 }

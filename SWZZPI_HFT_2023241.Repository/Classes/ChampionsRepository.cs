@@ -7,7 +7,7 @@ namespace SWZZPI_HFT_2023241.Repository
     {
         public ChampionsRepository(LolDBContext ctx) : base(ctx)
         {
-        }       
+        }      
         public override Champions Read(int id)
         {
             return ctx.Champions.FirstOrDefault(t => t.Id == id);

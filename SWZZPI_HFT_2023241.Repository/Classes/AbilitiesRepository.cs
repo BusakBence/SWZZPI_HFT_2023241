@@ -8,12 +8,10 @@ namespace SWZZPI_HFT_2023241.Repository
         public AbilitiesRepository(LolDBContext ctx) : base(ctx)
         {
         }
-
         public override Abilities Read(int id)
         {
             return ctx.Abilities.FirstOrDefault(t => t.Id == id);
         }
-
         public override void Update(Abilities item)
         {
             var old = Read(item.Id);

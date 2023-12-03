@@ -8,7 +8,6 @@ namespace SWZZPI_HFT_2023241.Repository
         public RegionsRepository(LolDBContext ctx) : base(ctx)
         {
         }
-
         public override Regions Read(int id)
         {
             return ctx.Regions.FirstOrDefault(t => t.Id == id);

@@ -14,20 +14,16 @@ namespace SWZZPI_HFT_2023241.Repository
             ctx.Set<T>().Add(item);
             ctx.SaveChanges();
         }
-
         public void Delete(int id)
         {
             ctx.Set<T>().Remove(Read(id));
             ctx.SaveChanges();
         }
-
         public abstract T Read(int id);      
-
         public IQueryable<T> ReadAll()
         {
             return ctx.Set<T>();
         }
-
         public abstract void Update(T item);
     }
 }
