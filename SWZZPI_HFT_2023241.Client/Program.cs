@@ -7,7 +7,7 @@ namespace SWZZPI_HFT_2023241.Client
 {
     public class Program
     {
-        static RestService restService;
+        static RestService restService;      
         #region Lists
         static void ListChampions(string champion)
         {
@@ -43,7 +43,7 @@ namespace SWZZPI_HFT_2023241.Client
                 Console.WriteLine("Abilities: ");
                 foreach (var item in abilities)
                 {
-                    Console.WriteLine(item.Id + "" + item.Name);
+                    Console.WriteLine(item.Id + ": " + item.Name);
                 }
             }
             Console.ReadLine();
