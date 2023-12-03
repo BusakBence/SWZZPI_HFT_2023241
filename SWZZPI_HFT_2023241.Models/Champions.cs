@@ -24,6 +24,7 @@ namespace SWZZPI_HFT_2023241.Models
         public int RegionsId { get; set; } 
         [ForeignKey(nameof(RegionsId))]
         public virtual Regions Region { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Abilities> Abilities { get; set; }
         public Champions()

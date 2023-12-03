@@ -21,6 +21,7 @@ namespace SWZZPI_HFT_2023241.Models
         public string FormOfGovernment { get; set; }
         [StringLength(100)]
         public string Environment { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Champions> Champions { get; set; }
         public Regions()
