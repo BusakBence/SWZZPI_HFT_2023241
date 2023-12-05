@@ -148,6 +148,51 @@ namespace SWZZPI_HFT_2023241.Client
             }
         }
 #endregion
+        static void GetShurimaChampions()
+        {
+            var shurima = restService.Get<ShurimaChampions>("stat/GetShurimaChampionsBetween2012And2016");
+            foreach (var champion in shurima)
+            {
+                Console.WriteLine("Név: " + champion.Name + " Régió: " + champion.Region + " Év: " + champion.Year);
+            }
+            Console.ReadLine();
+        }
+        static void GetFemalesUltimates()
+        {
+            var ultimates = restService.Get<FemalesUltimates>("stat/GetFemalesUltimates");
+            foreach (var item in ultimates)
+            {
+                Console.WriteLine("Név: " + item.Name + " Képesség: " + item.AbilityName);
+            }
+            Console.ReadLine();
+        }
+        static void GetAllIonianChampions()
+        {
+            var ionia = restService.Get<IonianChampions>("stat/GetAllIonianChampions");
+            foreach (var item in ionia)
+            {
+                Console.WriteLine("Név: " + item.Name + " Régió: " + item.Region);
+            }
+            Console.ReadLine();
+        }
+        static void GetDemacianAbilities()
+        {
+            var demacia = restService.Get<DemacianAbilities>("stat/GetDemacianAbilities");
+            foreach (var item in demacia)
+            {
+                Console.WriteLine("Név: " + item.ChampionName + " Képesség: " + item.Name + " Típus: " + item.Key + " Régió: " + item.Region);
+            }
+            Console.ReadLine();
+        }
+        static void GetDChampionsPAbilities() 
+        {
+            var dp = restService.Get<DChampionsPAbilities>("stat/GetDChampionsPAbilities");
+            foreach (var item in dp)
+            {
+                Console.WriteLine("Név: " + item.Name + " Típus: " + item.Key + " Képesség: " + item.KeyName);
+            }
+            Console.ReadLine();
+        }
         static void Main(string[] args)
         {
             restService = new RestService("http://localhost:30487/");
@@ -169,10 +214,19 @@ namespace SWZZPI_HFT_2023241.Client
                                 .Add("Delete", () => DeleteAbilities("Ability"))
                                 .Add("Update", () => UpdateAbilities("Ability"))
                                 .Add("Exit", ConsoleMenu.Close);
+            var noncrudMenu = new ConsoleMenu(args, level: 1)
+                              .Add("GetShurimaChampions", () => GetShurimaChampions())
+                              .Add("GetFemalesUltimates", () => GetFemalesUltimates())
+                              .Add("GetAllIonianChampions", () => GetAllIonianChampions())
+                              .Add("GetDemacianAbilities", () => GetDemacianAbilities())
+                              .Add("GetDChampionsPAbilities", () => GetDChampionsPAbilities())
+                              .Add("Exit", ConsoleMenu.Close);
+                              
             var menu = new ConsoleMenu(args, level: 0)
                        .Add("Champions", () => championsMenu.Show())
                        .Add("Regions", () => regionsMenu.Show())
                        .Add("Abilities", () => abilitiesMenu.Show())
+                       .Add("Non Cruds", () => noncrudMenu.Show())
                        .Add("Exit", ConsoleMenu.Close);
             menu.Show();
            
