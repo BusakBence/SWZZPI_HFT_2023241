@@ -7,7 +7,7 @@ namespace SWZZPI_HFT_2023241.Client
 {
     public class Program
     {
-        static RestService restService;      
+              
         #region Lists
         static void ListChampions(string champion)
         {
@@ -15,9 +15,11 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 List<Champions> champions = restService.Get<Champions>("champions");
                 Console.WriteLine("Champions: ");
+                Console.WriteLine("------------------------");
                 foreach (var item in champions)
                 {
-                    Console.WriteLine(item.Id + ": " + item.Name);
+                    Console.WriteLine("| " + item.Id + ": " + item.Name + " |");
+                    Console.WriteLine("------------------------");
                 }
             }
             Console.ReadLine();
@@ -28,9 +30,11 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 List<Regions> regions = restService.Get<Regions>("regions");
                 Console.WriteLine("Regions: ");
+                Console.WriteLine("------------------------");
                 foreach (var item in regions)
                 {
-                    Console.WriteLine(item.Id + ": " + item.Name);
+                    Console.WriteLine("| " + item.Id + ": " + item.Name + " |");
+                    Console.WriteLine("------------------------");
                 }
             }
             Console.ReadLine();
@@ -41,9 +45,11 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 List<Abilities> abilities = restService.Get<Abilities>("abilities");
                 Console.WriteLine("Abilities: ");
+                Console.WriteLine("-------------------------------------------------");
                 foreach (var item in abilities)
                 {
-                    Console.WriteLine(item.Id + ": " + item.Name);
+                    Console.WriteLine("| " + item.Id + ": " + item.Name + " |");
+                    Console.WriteLine("-------------------------------------------------");
                 }
             }
             Console.ReadLine();
@@ -147,60 +153,76 @@ namespace SWZZPI_HFT_2023241.Client
                 restService.Put(old, "ability");
             }
         }
-#endregion
+        #endregion
+        #region Non Cruds
         static void GetShurimaChampions()
         {
             var shurima = restService.Get<ShurimaChampions>("stat/GetShurimaChampionsBetween2012And2016");
+            Console.WriteLine("----------------------------------------------");
             foreach (var champion in shurima)
             {
-                Console.WriteLine("Név: " + champion.Name + " Régió: " + champion.Region + " Év: " + champion.Year);
+                Console.WriteLine("| Név: " + champion.Name + " | Régió: " + champion.Region + " | Év: " + champion.Year + " |");
+                Console.WriteLine("----------------------------------------------");
             }
             Console.ReadLine();
         }
         static void GetFemalesUltimates()
         {
             var ultimates = restService.Get<FemalesUltimates>("stat/GetFemalesUltimates");
+            Console.WriteLine("--------------------------------------------------------");
             foreach (var item in ultimates)
             {
-                Console.WriteLine("Név: " + item.Name + " Képesség: " + item.AbilityName);
+                Console.WriteLine("| Név: " + item.Name + " | Képesség: " + item.AbilityName + " |");
+                Console.WriteLine("--------------------------------------------------------");
             }
             Console.ReadLine();
         }
         static void GetAllIonianChampions()
         {
             var ionia = restService.Get<IonianChampions>("stat/GetAllIonianChampions");
+            Console.WriteLine("--------------------------------------");
             foreach (var item in ionia)
             {
-                Console.WriteLine("Név: " + item.Name + " Régió: " + item.Region);
+                Console.WriteLine("| Név: " + item.Name + " | Régió: " + item.Region + " |");
+                Console.WriteLine("--------------------------------------");
             }
             Console.ReadLine();
         }
         static void GetDemacianAbilities()
         {
             var demacia = restService.Get<DemacianAbilities>("stat/GetDemacianAbilities");
+            Console.WriteLine("----------------------------------------------------------------------------------");
             foreach (var item in demacia)
             {
-                Console.WriteLine("Név: " + item.ChampionName + " Képesség: " + item.Name + " Típus: " + item.Key + " Régió: " + item.Region);
+                Console.WriteLine("| Név: " + item.ChampionName + " | Képesség: " + item.Name + " | Típus: " + item.Key + " | Régió: " + item.Region + " |");
+                Console.WriteLine("----------------------------------------------------------------------------------");
             }
             Console.ReadLine();
         }
         static void GetDChampionsPAbilities() 
         {
             var dp = restService.Get<DChampionsPAbilities>("stat/GetDChampionsPAbilities");
+            Console.WriteLine("------------------------------------------------------------------");
             foreach (var item in dp)
             {
-                Console.WriteLine("Név: " + item.Name + " Típus: " + item.Key + " Képesség: " + item.KeyName);
+                Console.WriteLine("| Név: " + item.Name + " | Típus: " + item.Key + " | Képesség: " + item.KeyName + " |");
+                Console.WriteLine("------------------------------------------------------------------");
             }
             Console.ReadLine();
         }
         static void GetMoreThanTwoLanes()
         {
             var lanes = restService.Get<MoreThanTwoLanes>("stat/GetMoreThanTwoLanes");
+            Console.WriteLine("-----------------------------------------------------------------------");
             foreach (var item in lanes)
             {
-                Console.WriteLine("Név: " + item.Name + " Ösvény: " + item.Lane + " Régió: " + item.Region);
+                Console.WriteLine("| Név: " + item.Name + " | Ösvény: " + item.Lane + " | Régió: " + item.Region + " |");
+                Console.WriteLine("-----------------------------------------------------------------------");
             }
+            Console.ReadLine();
         }
+        #endregion
+        static RestService restService;
         static void Main(string[] args)
         {
             restService = new RestService("http://localhost:30487/");
