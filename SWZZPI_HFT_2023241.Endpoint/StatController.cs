@@ -40,7 +40,7 @@ namespace SWZZPI_HFT_2023241.Endpoint
             return this.ChampionsLogic.GetDChampionsPAbilities();
         }
         [HttpGet]
-        public List<MoreThanTwoLanes> MoreThanTwoLanes()
+        public List<MoreThanTwoLanes> GetMoreThanTwoLanes()
         {
             return this.ChampionsLogic.GetMoreThanTwoLanes();
         }
