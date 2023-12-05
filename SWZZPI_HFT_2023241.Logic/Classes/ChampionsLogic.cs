@@ -125,6 +125,20 @@ namespace SWZZPI_HFT_2023241.Logic
                              KeyName = ability.Name
                          };           
             return result.ToList();
-        }          
+        }
+        public List<MoreThanTwoLanes> GetMoreThanTwoLanes()
+        {
+            var regions = RegionsRepo.ReadAll();
+            var result = from region in regions
+                         from champion in region.Champions
+                         where champion.Lane.Contains(',')
+                         select new MoreThanTwoLanes
+                         {
+                             Name = champion.Name,
+                             Lane = champion.Lane,
+                             Region = region.Name
+                         };
+            return result.ToList();
+        }
     }   
 }

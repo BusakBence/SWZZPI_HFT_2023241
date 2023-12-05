@@ -16,5 +16,6 @@ namespace SWZZPI_HFT_2023241.Logic
         List<IonianChampions> GetAllIonianChampions();
         List<DemacianAbilities> GetDemacianAbilities();
         List<DChampionsPAbilities> GetDChampionsPAbilities();
+        List<MoreThanTwoLanes> GetMoreThanTwoLanes();
     }
 }
