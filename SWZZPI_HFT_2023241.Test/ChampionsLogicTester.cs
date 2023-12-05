@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SWZZPI_HFT_2023241.Logic;
 using SWZZPI_HFT_2023241.Models;
 using SWZZPI_HFT_2023241.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -123,6 +124,46 @@ namespace SWZZPI_HFT_2023241.Test
             var expectedPAbilities = new List<DChampionsPAbilities> { new DChampionsPAbilities() { Name = "Daniel", Key = 'P', KeyName = "Kepesseg" } };
             var actualPAbilities = championsLogic.GetDChampionsPAbilities();
             CollectionAssert.AreEqual(expectedPAbilities, actualPAbilities);
-        }     
+        }   
+        [Test]
+        public void CreateNewChampionCorrectlyTest()
+        {
+            var newChampion = new Champions() { Name = "Gedeon" };
+            championsLogic.Create(newChampion);
+            mockChampionsRepo.Verify(c => c.Create(newChampion), Times.Once);
+        }
+        [Test]
+        public void CreateNewChampionIncorrectlyTest()
+        {
+            var newChampion = new Champions() { Name = "op" };
+            try
+            {
+                championsLogic.Create(newChampion);
+            }
+            catch (Exception)
+            {                
+            }            
+            mockChampionsRepo.Verify(c => c.Create(newChampion), Times.Never);
+        }
+        [Test]
+        public void CreateNewChampionCorrectlyTest2()
+        {
+            var newChampion = new Champions() { Species = "Vámpír"};
+            try
+            {
+                championsLogic.Create(newChampion);
+            }
+            catch (Exception)
+            {
+            }
+            mockChampionsRepo.Verify(c => c.Create(newChampion), Times.Never);
+        }
+        [Test]
+        public void GetAllIoniansTest2()
+        {
+            var expected = 1;
+            var actual = championsLogic.GetAllIonianChampions().Count;
+            Assert.AreEqual(expected, actual);
+        }
     }   
 }
