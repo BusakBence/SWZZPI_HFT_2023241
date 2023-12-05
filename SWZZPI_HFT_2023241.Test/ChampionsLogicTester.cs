@@ -106,8 +106,9 @@ namespace SWZZPI_HFT_2023241.Test
         [Test]
         public void GetAllIonianChampionsTest()
         {
-            int actualIonians = championsLogic.GetAllIonianChampions();   
-            Assert.AreEqual(1, actualIonians);
+            var expectedIonians = new List<IonianChampions> { new IonianChampions() { Name = "Janos", Region = "Ionia" } };
+            var actualIonians = championsLogic.GetAllIonianChampions();
+            CollectionAssert.AreEqual(expectedIonians, actualIonians);
         }
         [Test]
         public void GetDemacianAbilitiesTest()
