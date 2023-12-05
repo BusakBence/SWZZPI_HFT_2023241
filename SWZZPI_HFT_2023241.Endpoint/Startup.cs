@@ -21,7 +21,7 @@ namespace SWZZPI_HFT_2023241.Endpoint
         }                
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<LolDBContext>();
+            services.AddTransient<LolDBContext>();
             services.AddTransient<IRepository<Champions>, ChampionsRepository>();
             services.AddTransient<IRepository<Regions>, RegionsRepository>();
             services.AddTransient<IRepository<Abilities>, AbilitiesRepository>();
