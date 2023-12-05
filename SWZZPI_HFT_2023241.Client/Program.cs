@@ -213,11 +213,11 @@ namespace SWZZPI_HFT_2023241.Client
         static void GetMoreThanTwoLanes()
         {
             var lanes = restService.Get<MoreThanTwoLanes>("stat/GetMoreThanTwoLanes");
-            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("----------------------------------------------------------------------------");
             foreach (var item in lanes)
             {
                 Console.WriteLine("| Név: " + item.Name + " | Ösvény: " + item.Lane + " | Régió: " + item.Region + " |");
-                Console.WriteLine("-----------------------------------------------------------------------");
+                Console.WriteLine("----------------------------------------------------------------------------");
             }
             Console.ReadLine();
         }
