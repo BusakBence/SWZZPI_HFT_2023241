@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SWZZPI_HFT_2023241.Logic;
+using SWZZPI_HFT_2023241.Models;
 using System.Collections.Generic;
 
 namespace SWZZPI_HFT_2023241.Endpoint
@@ -24,7 +25,7 @@ namespace SWZZPI_HFT_2023241.Endpoint
             return this.ChampionsLogic.GetFemalesUltimates();
         }
         [HttpGet]
-        public int GetAllIonianChampions()
+        public List<IonianChampions> GetAllIonianChampions()
         {
             return this.ChampionsLogic.GetAllIonianChampions();
         }
