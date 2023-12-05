@@ -114,5 +114,27 @@ namespace SWZZPI_HFT_2023241.Models
             {
                 return HashCode.Combine(this.Name, this.Key, this.KeyName);
             }
-        }    
+        }
+    public class MoreThanTwoLanes
+    {
+        public string Name { get; set; }
+        public string Lane { get; set; }
+        public string Region { get; set; }
+        public override bool Equals(object obj)
+        {
+            MoreThanTwoLanes b = obj as MoreThanTwoLanes;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.Lane == b.Lane && this.Region == b.Region;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.Lane, this.Region);
+        }
+    }
 }
