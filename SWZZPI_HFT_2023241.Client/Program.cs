@@ -193,6 +193,14 @@ namespace SWZZPI_HFT_2023241.Client
             }
             Console.ReadLine();
         }
+        static void GetMoreThanTwoLanes()
+        {
+            var lanes = restService.Get<MoreThanTwoLanes>("stat/GetMoreThanTwoLanes");
+            foreach (var item in lanes)
+            {
+                Console.WriteLine("Név: " + item.Name + " Ösvény: " + item.Lane + " Régió: " + item.Region);
+            }
+        }
         static void Main(string[] args)
         {
             restService = new RestService("http://localhost:30487/");
@@ -220,6 +228,7 @@ namespace SWZZPI_HFT_2023241.Client
                               .Add("GetAllIonianChampions", () => GetAllIonianChampions())
                               .Add("GetDemacianAbilities", () => GetDemacianAbilities())
                               .Add("GetDChampionsPAbilities", () => GetDChampionsPAbilities())
+                              .Add("GetMoreThanTwoLanes", () => GetMoreThanTwoLanes())
                               .Add("Exit", ConsoleMenu.Close);
                               
             var menu = new ConsoleMenu(args, level: 0)
