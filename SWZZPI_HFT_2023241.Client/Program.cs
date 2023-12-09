@@ -120,11 +120,11 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter the champion's id: ");
                 int oldId = int.Parse(Console.ReadLine());
-                Champions old = restService.Get<Champions>(oldId, "champion");
+                Champions old = restService.Get<Champions>(oldId, "champions");
                 Console.Write($"Enter the champion's new name (old name: {old.Name}): ");
                 string name = Console.ReadLine();
                 old.Name = name;
-                restService.Put(old, "champion");
+                restService.Put(old, "champions");
             }
         } 
         static void UpdateRegions(string region)
@@ -133,11 +133,11 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter the region's id: ");
                 int oldId = int.Parse(Console.ReadLine());
-                Regions old = restService.Get<Regions>(oldId, "champion");
+                Regions old = restService.Get<Regions>(oldId, "regions");
                 Console.Write($"Enter the region's new name (old name: {old.Name}): ");
                 string name = Console.ReadLine();
                 old.Name = name;
-                restService.Put(old, "region");
+                restService.Put(old, "regions");
             }
         }
         static void UpdateAbilities(string ability)
@@ -146,11 +146,11 @@ namespace SWZZPI_HFT_2023241.Client
             {
                 Console.Write("Enter the ability's id: ");
                 int oldId = int.Parse(Console.ReadLine());
-                Abilities old = restService.Get<Abilities>(oldId, "ability");
+                Abilities old = restService.Get<Abilities>(oldId, "abilities");
                 Console.Write($"Enter the ability's new name (old name: {old.Name}): ");
                 string name = Console.ReadLine();
                 old.Name = name;
-                restService.Put(old, "ability");
+                restService.Put(old, "abilities");
             }
         }
         #endregion
