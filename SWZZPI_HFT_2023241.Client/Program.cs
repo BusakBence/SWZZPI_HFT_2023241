@@ -6,8 +6,7 @@ using System.Collections.Generic;
 namespace SWZZPI_HFT_2023241.Client
 {
     public class Program
-    {
-              
+    {             
         #region Lists
         static void ListChampions(string champion)
         {
