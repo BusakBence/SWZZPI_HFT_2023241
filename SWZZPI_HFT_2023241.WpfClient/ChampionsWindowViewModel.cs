@@ -1,10 +1,8 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using SWZZPI_HFT_2023241.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SWZZPI_HFT_2023241.WpfClient
@@ -42,7 +40,53 @@ namespace SWZZPI_HFT_2023241.WpfClient
         public ICommand UpdateChampionsCommand { get; set; }
         public ChampionsWindowViewModel()
         {
-
+            if (!IsInDesignMode)
+            {
+                Champions = new RestCollection<Champions>("http://localhost:30487/", "Champions", "hub");
+                CreateChampionsCommand = new RelayCommand(() =>
+                {
+                    Champions.Add(new Champions()
+                    {
+                        Id = SelectedChampion.Id,
+                        Name = SelectedChampion.Name,
+                        Gender = SelectedChampion.Gender,
+                        Species = SelectedChampion.Species,
+                        Lane = SelectedChampion.Lane,
+                        ReleaseYear = SelectedChampion.ReleaseYear,
+                        RegionsId = SelectedChampion.RegionsId
+                    });
+                });
+                DeleteChampionsCommand = new RelayCommand(() =>
+                {
+                    Champions.Delete(SelectedChampion.Id);
+                },
+                () =>
+                {
+                    return SelectedChampion != null;
+                });
+                UpdateChampionsCommand = new RelayCommand(() =>
+                {
+                    Champions.Update(SelectedChampion);
+                });
+                SelectedChampion = new Champions()
+                {
+                    Id = int.MaxValue,
+                    Name = "",
+                    Gender = "",
+                    Species = "",
+                    Lane = "",
+                    ReleaseYear = 2024,
+                    RegionsId = 0,
+                };
+            }
+        }
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
         }
     }
 }
