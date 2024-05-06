@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,22 @@ namespace SWZZPI_HFT_2023241.WpfClient
         public MainWindowViewModel()
         {
             restService = new RestService("http://localhost:30487/", "swagger");
+            ChampionsWindowCommand = new RelayCommand(() =>
+            {
 
+            });
+            RegionsWindowCommand = new RelayCommand(() =>
+            {
+
+            });
+            AbilitiesWindowCommand = new RelayCommand(() =>
+            {
+
+            });
+            NonCrudsWindowCommand = new RelayCommand(() =>
+            {
+
+            });
         }
     }
 }
