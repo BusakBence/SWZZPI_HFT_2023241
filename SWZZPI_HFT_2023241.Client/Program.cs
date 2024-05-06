@@ -224,7 +224,7 @@ namespace SWZZPI_HFT_2023241.Client
         static RestService restService;
         static void Main(string[] args)
         {
-            restService = new RestService("http://localhost:30487/");
+            restService = new RestService("http://localhost:30487/", "swagger");
             var championsMenu = new ConsoleMenu(args, level: 1)
                                 .Add("List", () => ListChampions("Champion"))
                                 .Add("Create", () => CreateChampions("Champion"))
@@ -250,8 +250,7 @@ namespace SWZZPI_HFT_2023241.Client
                               .Add("GetDemacianAbilities", () => GetDemacianAbilities())
                               .Add("GetDChampionsPAbilities", () => GetDChampionsPAbilities())
                               .Add("GetMoreThanTwoLanes", () => GetMoreThanTwoLanes())
-                              .Add("Exit", ConsoleMenu.Close);
-                              
+                              .Add("Exit", ConsoleMenu.Close);                              
             var menu = new ConsoleMenu(args, level: 0)
                        .Add("Champions", () => championsMenu.Show())
                        .Add("Regions", () => regionsMenu.Show())

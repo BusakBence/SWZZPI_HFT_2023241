@@ -33,7 +33,8 @@ namespace SWZZPI_HFT_2023241.Endpoint
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "SWZZPI_HFT_2023241.Endpoint", Version = "v1" });
-            });            
+            });
+            services.AddSignalR();
         }       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -56,6 +57,7 @@ namespace SWZZPI_HFT_2023241.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

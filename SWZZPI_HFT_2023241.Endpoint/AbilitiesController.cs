@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using SWZZPI_HFT_2023241.Logic;
 using SWZZPI_HFT_2023241.Models;
 using System.Collections.Generic;
@@ -10,9 +11,11 @@ namespace SWZZPI_HFT_2023241.Endpoint
     public class AbilitiesController : ControllerBase
     {
         public IAbilitiesLogic AbilitiesLogic;
-        public AbilitiesController(IAbilitiesLogic abilitiesLogic)
+        public IHubContext<SignalRHub> hub;
+        public AbilitiesController(IAbilitiesLogic abilitiesLogic, IHubContext<SignalRHub> hub)
         {
             this.AbilitiesLogic = abilitiesLogic;
+            this.hub = hub;
         }
         [HttpGet]
         public IEnumerable<Abilities> ReadAll()
@@ -28,16 +31,20 @@ namespace SWZZPI_HFT_2023241.Endpoint
         public void Create([FromBody] Abilities ability)
         {
             this.AbilitiesLogic.Create(ability);
+            this.hub.Clients.All.SendAsync("AbilityCreated", ability);
         }
         [HttpPut]
         public void Update([FromBody] Abilities ability)
         {
             this.AbilitiesLogic.Update(ability);
+            this.hub.Clients.All.SendAsync("AbilityUpdated", ability);
         }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var abilitytoDelete = this.AbilitiesLogic.Read(id);
             this.AbilitiesLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("AbilityDeleted", abilitytoDelete);
         }
     }
 }

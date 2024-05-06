@@ -14,6 +14,73 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        
+        <StackPanel>
+            <Label Content="Champions" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+            <ListBox ItemsSource="{Binding Champions}" SelectedItem="{Binding SelectedChampion}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="2" BorderBrush="Black">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding Gender}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding Species}" Grid.Row="0" Grid.Column="2" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding Lane}" Grid.Row="1" Grid.Column="0" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding ReleaseYear}" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding Region.Name}" Grid.Row="1" Grid.Column="2" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Label Grid.Column="0" Content="Name:"  Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.Name}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="0">
+                    <Label Grid.Column="0" Content="Gender:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.Gender}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <Label Grid.Column="0" Content="Species:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.Species}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <Label Grid.Column="0" Content="Lane:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.Lane}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2">
+                    <Label Grid.Column="0" Content="Release year:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.ReleaseYear}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="2">
+                    <Label Grid.Column="0" Content="Region:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.Region.Name}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+            </Grid>
+            <Button Content="Create" Command="{Binding CreateChampionsCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>
+            <Button Content="Delete" Command="{Binding DeleteChampionsCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>
+            <Button Content="Update" Command="{Binding UpdateChampionsCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>
+        </StackPanel>
     </Grid>
 </Window>

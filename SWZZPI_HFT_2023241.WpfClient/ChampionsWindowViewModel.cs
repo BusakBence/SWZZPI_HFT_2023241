@@ -29,7 +29,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                         Species = value.Species,
                         Lane = value.Lane,
                         ReleaseYear = value.ReleaseYear,
-                        RegionsId = value.RegionsId
+                        Region = value.Region
                     };
                     OnPropertyChanged();
                 }
@@ -53,7 +53,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                         Species = SelectedChampion.Species,
                         Lane = SelectedChampion.Lane,
                         ReleaseYear = SelectedChampion.ReleaseYear,
-                        RegionsId = SelectedChampion.RegionsId
+                        Region = SelectedChampion.Region
                     });
                 });
                 DeleteChampionsCommand = new RelayCommand(() =>
@@ -75,8 +75,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                     Gender = "",
                     Species = "",
                     Lane = "",
-                    ReleaseYear = 2024,
-                    RegionsId = 0,
+                    ReleaseYear = 2024
                 };
             }
         }
