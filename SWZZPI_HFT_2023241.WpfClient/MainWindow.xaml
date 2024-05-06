@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:SWZZPI_HFT_2023241.WpfClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-
+        <StackPanel Grid.Column="1">
+            <Label Content="Choose the database you want to edit!"/>
+            
+        </StackPanel>
     </Grid>
 </Window>
