@@ -10,9 +10,12 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <StackPanel Grid.Column="1">
-            <Label Content="Choose the database you want to edit!"/>
-            
+        <StackPanel Background="#399cbd">
+            <Label Content="Choose the database you want to edit!" Margin="10" Padding="10" FontSize="22" HorizontalAlignment="Center" Foreground="#DAA520" Background="#1434A4"/>
+            <Button Content="Champions" Command="{Binding ChampionsWindowCommand}" Margin="5" Padding="25" FontSize="16" Foreground="#DAA520" Background="#1434A4"/>
+            <Button Content="Regions" Command="{Binding RegionsWindowCommand}" Margin="5" Padding="25" FontSize="16" Foreground="#DAA520" Background="#1434A4"/>
+            <Button Content="Abilities" Command="{Binding AbilitiesWindowCommand}" Margin="5" Padding="25" FontSize="16" Foreground="#DAA520" Background="#1434A4"/>
+            <Button Content="Non Cruds" Command="{Binding NonCrudsWindowCommand}" Margin="5" Padding="25" FontSize="16" Foreground="#DAA520" Background="#1434A4"/>
         </StackPanel>
     </Grid>
 </Window>
