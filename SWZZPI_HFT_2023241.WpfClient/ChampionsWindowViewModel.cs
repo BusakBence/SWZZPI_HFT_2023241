@@ -32,6 +32,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                         Region = value.Region
                     };
                     OnPropertyChanged();
+                    (DeleteChampionsCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }

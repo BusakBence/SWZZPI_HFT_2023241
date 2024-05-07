@@ -37,7 +37,7 @@ namespace SWZZPI_HFT_2023241.Repository
                 {
                     new Regions("1*Shurima*South*Unknown*Divine Empire*Desert"),
                     new Regions("2*Noxus*North*Medium*Expansionist Empire*Steppes"),
-                    new Regions("3*Ionia*North-East*Low*Regona Provinces*Magical"),
+                    new Regions("3*Ionia*North-East*Low*Regional Provinces*Magical"),
                     new Regions("4*Demacia*West*Medium*Feudal Monarchy*Countryside"),
                     new Regions("5*Freljord*North*Low*Tribal Matriarchy*Tundra"),
                     new Regions("6*Piltover*Middle*High*Aristocratic Oligarchy*Metropolis"),

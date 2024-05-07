@@ -21,7 +21,8 @@ namespace SWZZPI_HFT_2023241.WpfClient
             });
             RegionsWindowCommand = new RelayCommand(() =>
             {
-
+                RegionsWindow regionsWindow = new RegionsWindow();
+                regionsWindow.Show();
             });
             AbilitiesWindowCommand = new RelayCommand(() =>
             {
