@@ -26,7 +26,8 @@ namespace SWZZPI_HFT_2023241.WpfClient
             });
             AbilitiesWindowCommand = new RelayCommand(() =>
             {
-
+                AbilitiesWindow abilitiesWindow = new AbilitiesWindow();
+                abilitiesWindow.Show();
             });
             NonCrudsWindowCommand = new RelayCommand(() =>
             {

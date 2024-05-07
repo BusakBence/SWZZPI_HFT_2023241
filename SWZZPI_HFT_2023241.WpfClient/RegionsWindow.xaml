@@ -20,7 +20,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="2" BorderBrush="Black">
-                                <Grid>
+                                <Grid Background="#399cbd">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
