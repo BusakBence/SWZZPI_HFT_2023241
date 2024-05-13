@@ -51,7 +51,13 @@ namespace SWZZPI_HFT_2023241.Endpoint
                                 .Error;
                 var response = new { Msg = exception.Message };
                 await c.Response.WriteAsJsonAsync(response);
-            }));          
+            }));
+            app.UseCors(x => x
+               .AllowCredentials()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .WithOrigins("http://localhost:11090"));
+
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

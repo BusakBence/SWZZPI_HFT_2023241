@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Region UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="Menu">
+        <button type="button" onclick="linker('menu')">Back to main menu</button>
+    </div>
+    <h1> Region Catalog </h1>
+    <div id="formdiv">
+        <label>Region name</label>
+        <input type="text" id="Name" />
+        <br />
+        <label>Location</label>
+        <input type="text" id="Location" />
+        <br />
+        <label>TechnologyLevel</label>
+        <input type="text" id="TechnologyLevel" />
+        <br />
+        <label>FormOfGovernment</label>
+        <input type="text" id="FormOfGovernment" />
+        <br />
+        <label>Environment</label>
+        <input type="text" id="Environment" />
+        <br />
+        <button type="button" onclick="create()">Add region</button>
+    </div>
+    <div id="updateformdiv">
+        <label>Region name</label>
+        <input type="text" id="RegiontoUpdate" />
+        <br />
+        <label>Location</label>
+        <input type="text" id="LocationtoUpdate" />
+        <br />
+        <label>TechnologyLevel</label>
+        <input type="text" id="TLtoUpdate" />
+        <br />
+        <label>FormOfGovernment</label>
+        <input type="text" id="FOGtoUpdate" />
+        <br />
+        <label>Environment</label>
+        <input type="text" id="EnvironmenttoUpdate" />
+        <br />
+        <button type="button" onclick="update()">Update ability</button>
+
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Technology Level</th>
+                <th>Form Of Government</th>
+                <th>Environment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+    <script src="regions.js"></script>
+</body>
+</html>

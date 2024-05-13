@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Champion UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="Menu">
+        <button type="button" onclick="linker('menu')">Back to main menu</button>
+    </div>
+    <h1> Champion Catalog </h1>
+    <div id="formdiv">
+        <label>Champion name</label>
+        <input type="text" id="Name" />
+        <br />
+        <label>Gender</label>
+        <input type="text" id="Gender" />
+        <br />
+        <label>Species</label>
+        <input type="text" id="Species" />
+        <br />
+        <label>Lane</label>
+        <input type="text" id="Lane" />
+        <br />
+        <label>ReleaseYear</label>
+        <input type="text" id="ReleaseYear" />
+        <br />
+        <label>Region Id</label>
+        <input type="text" id="RegionsId" />
+        <br />
+        <button type="button" onclick="create()">Add champion</button>
+
+    </div>
+    <div id="updateformdiv">
+        <label>Champion name</label>
+        <input type="text" id="ChampiontoUpdate" />
+        <br />
+        <label>Gender</label>
+        <input type="text" id="GendertoUpdate" />
+        <br />
+        <label>Species</label>
+        <input type="text" id="SpeciestoUpdate" />
+        <br />
+        <label>Lane</label>
+        <input type="text" id="LanetoUpdate" />
+        <br />
+        <label>ReleaseYear</label>
+        <input type="text" id="ReleaseYeartoUpdate" />
+        <br />
+        <label>Region Id</label>
+        <input type="text" id="RegionIdtoUpdate" />
+        <br />
+        <button type="button" onclick="update()">Update ability</button>
+
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Species</th>
+                <th>Lane</th>
+                <th>Release Year</th>
+                <th>Region</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+    <script src="champions.js"></script>
+</body>
+</html>

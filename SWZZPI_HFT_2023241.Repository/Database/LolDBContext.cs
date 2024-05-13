@@ -906,7 +906,7 @@ namespace SWZZPI_HFT_2023241.Repository
                     new Abilities("684*Spirit Cleave*W*156"),
                     new Abilities("685*Spirit Fire*E*85"),
                     new Abilities("686*Spirit of Dread*W*42"),
-                    new Abilities("687*Spitit Rush*R*2"),
+                    new Abilities("687*Spirit Rush*R*2"),
                     new Abilities("688*Spirit's Refuge*W*116"),
                     new Abilities("689*Spray and Pray*R*137"),
                     new Abilities("690*Stacked Deck*E*136"),

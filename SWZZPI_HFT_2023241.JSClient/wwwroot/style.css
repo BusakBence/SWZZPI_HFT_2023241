@@ -1,0 +1,88 @@
+﻿* {
+    font-size: 1.02em;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #DAA520;
+    border: 2px solid lightgray;
+    padding: 5px;
+}
+
+p {
+    font-size: 1.1em;
+    font-weight: bolder;
+    color: #DAA520;
+    background-color: #1434A4;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, td, tr {
+    border: 1px solid lightgray;
+}
+
+tr {
+    background-color: #1434A4;
+    color: #DAA520;
+}
+
+td {
+    padding: 10px;
+}
+
+th {
+    background-color: #1434A4;
+    color: #DAA520;
+}
+
+#formdiv {
+    display: flex;
+    flex-direction: column;
+    color: #DAA520;
+    background-color: #1434A4;
+    margin-bottom: 30px;
+}
+
+#formdiv label, button, input {
+    padding: 2px;
+    margin: 1px;
+}
+
+#formdiv label {
+    font-weight: bolder;
+}
+
+#updateformdiv {
+    display: none;
+    flex-direction: column;
+    color: #DAA520;
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+#updateformdiv label {
+    font-weight: bolder;
+}
+
+#menu {
+    font-size: 1.1em;
+    font-weight: bolder;
+    color: #DAA520;
+    background-color: #1434A4;
+    padding: 20px;
+}
+
+.menu-item {
+    border-collapse: collapse;
+    border: solid 1px lightgray;
+    padding: 10px;
+}
+
+body {
+    background-color: #399cbd
+}
