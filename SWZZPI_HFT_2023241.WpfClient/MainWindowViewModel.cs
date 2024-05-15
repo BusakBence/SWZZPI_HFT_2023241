@@ -6,7 +6,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-        static RestService restService;
+        public static RestService restService;
         public ICommand ChampionsWindowCommand { get; set; }
         public ICommand RegionsWindowCommand { get; set; }
         public ICommand AbilitiesWindowCommand { get; set; }
@@ -31,7 +31,8 @@ namespace SWZZPI_HFT_2023241.WpfClient
             });
             NonCrudsWindowCommand = new RelayCommand(() =>
             {
-
+                NonCrudsWindow nonCrudsWindow = new NonCrudsWindow();
+                nonCrudsWindow.Show();
             });
         }
     }

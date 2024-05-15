@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel CanVerticallyScroll="True">
             <Label Content="Champions" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-            <ListBox ItemsSource="{Binding Champions}" SelectedItem="{Binding SelectedChampion}"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListBox ItemsSource="{Binding Champions}" SelectedItem="{Binding SelectedChampion}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2" BorderBrush="Black">

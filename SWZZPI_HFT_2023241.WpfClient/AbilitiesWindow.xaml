@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <Label Content="Abilities" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-            <ListBox ItemsSource="{Binding Abilities}" SelectedItem="{Binding SelectedAbilities}">
+            <ListBox ItemsSource="{Binding Abilities}" SelectedItem="{Binding SelectedAbilities}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2" BorderBrush="Black">

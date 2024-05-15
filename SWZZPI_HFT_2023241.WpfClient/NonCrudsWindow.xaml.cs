@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWZZPI_HFT_2023241.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,33 @@ namespace SWZZPI_HFT_2023241.WpfClient
         public NonCrudsWindow()
         {
             InitializeComponent();
+        }
+    }
+    public class MyItemTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate ShurimaChampionsBetween2012And2016 { get; set; }
+        public DataTemplate FemalesUltimates { get; set; }
+        public DataTemplate AllIonianChampions { get; set; }
+        public DataTemplate DemacianAbilities { get; set; }
+        public DataTemplate DChampionsPAbilities { get; set; }
+        public DataTemplate MoreThanTwoLanes { get; set; }
+
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            if (item is ShurimaChampions)
+                return ShurimaChampionsBetween2012And2016;
+            if (item is FemalesUltimates)
+                return FemalesUltimates;
+            if (item is IonianChampions)
+                return AllIonianChampions;
+            if (item is DemacianAbilities)
+                return DemacianAbilities;
+            if (item is DChampionsPAbilities)
+                return DChampionsPAbilities;
+            if (item is MoreThanTwoLanes)
+                return MoreThanTwoLanes;
+
+            return base.SelectTemplate(item, container);
         }
     }
 }
