@@ -31,20 +31,20 @@ namespace SWZZPI_HFT_2023241.Endpoint
         public void Create([FromBody] Abilities ability)
         {
             this.AbilitiesLogic.Create(ability);
-            this.hub.Clients.All.SendAsync("AbilityCreated", ability);
+            this.hub.Clients.All.SendAsync("AbilitiesCreated", ability);
         }
         [HttpPut]
         public void Update([FromBody] Abilities ability)
         {
             this.AbilitiesLogic.Update(ability);
-            this.hub.Clients.All.SendAsync("AbilityUpdated", ability);
+            this.hub.Clients.All.SendAsync("AbilitiesUpdated", ability);
         }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             var abilitytoDelete = this.AbilitiesLogic.Read(id);
             this.AbilitiesLogic.Delete(id);
-            this.hub.Clients.All.SendAsync("AbilityDeleted", abilitytoDelete);
+            this.hub.Clients.All.SendAsync("AbilitiesDeleted", abilitytoDelete);
         }
     }
 }

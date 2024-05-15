@@ -33,20 +33,20 @@ namespace SWZZPI_HFT_2023241.Endpoint
         public void Create([FromBody] Regions region)
         {
             this.RegionsLogic.Create(region);
-            this.hub.Clients.All.SendAsync("RegionCreated", region);
+            this.hub.Clients.All.SendAsync("RegionsCreated", region);
         }
         [HttpPut]
         public void Update([FromBody] Regions region)
         {
             this.RegionsLogic.Update(region);
-            this.hub.Clients.All.SendAsync("RegionUpdated", region);
+            this.hub.Clients.All.SendAsync("RegionsUpdated", region);
         }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             var regiontoDelete = this.RegionsLogic.Read(id);
             this.RegionsLogic.Delete(id);
-            this.hub.Clients.All.SendAsync("RegionCreated", regiontoDelete);
+            this.hub.Clients.All.SendAsync("RegionsDeleted", regiontoDelete);
         }
     }
 }

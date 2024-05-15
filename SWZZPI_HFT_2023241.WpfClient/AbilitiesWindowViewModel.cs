@@ -31,7 +31,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                         Id = value.Id,
                         Name = value.Name,
                         AbilityKey = value.AbilityKey,
-                        Champion = value.Champion
+                        ChampionId = value.ChampionId
                     };
                     OnPropertyChanged();
                     (DeleteAbilitiesCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -50,10 +50,9 @@ namespace SWZZPI_HFT_2023241.WpfClient
                 {
                     Abilities.Add(new Abilities()
                     {
-                        Id = SelectedAbilities.Id,
                         Name = SelectedAbilities.Name,
                         AbilityKey = SelectedAbilities.AbilityKey,
-                        Champion = SelectedAbilities.Champion
+                        ChampionId = SelectedAbilities.ChampionId
                     });
                 });
                 DeleteAbilitiesCommand = new RelayCommand(() =>
@@ -68,12 +67,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                 {
                     Abilities.Update(SelectedAbilities);
                 });
-                SelectedAbilities = new Abilities()
-                {
-                    Id = 0,
-                    Name = "",
-                    AbilityKey = ' '
-                };
+                SelectedAbilities = new Abilities();             
             }
         }
         public static bool IsInDesignMode

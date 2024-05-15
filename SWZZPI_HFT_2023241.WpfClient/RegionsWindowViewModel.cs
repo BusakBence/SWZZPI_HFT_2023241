@@ -47,12 +47,11 @@ namespace SWZZPI_HFT_2023241.WpfClient
                 {
                     Regions.Add(new Regions()
                     {
-                        Id = SelectedRegion.Id,
                         Name = SelectedRegion.Name,
-                        Location = SelectedRegion.Location,
-                        Environment = SelectedRegion.Environment,
+                        Location = SelectedRegion.Location,                     
                         TechnologyLevel = SelectedRegion.TechnologyLevel,
-                        FormOfGovernment = SelectedRegion.FormOfGovernment
+                        FormOfGovernment = SelectedRegion.FormOfGovernment,
+                        Environment = SelectedRegion.Environment
                     });
                 });
                 DeleteRegionsCommand = new RelayCommand(() =>

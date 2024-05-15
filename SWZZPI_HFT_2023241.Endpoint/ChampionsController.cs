@@ -31,20 +31,20 @@ namespace SWZZPI_HFT_2023241.Endpoint
         public void Create([FromBody] Champions champion)
         {
             this.ChampionsLogic.Create(champion);
-            this.hub.Clients.All.SendAsync("ChampionCreated", champion);
+            this.hub.Clients.All.SendAsync("ChampionsCreated", champion);
         }        
         [HttpPut]
         public void Update([FromBody] Champions champion)
         {
             this.ChampionsLogic.Update(champion);
-            this.hub.Clients.All.SendAsync("ChampionUpdated", champion);
+            this.hub.Clients.All.SendAsync("ChampionsUpdated", champion);
         }      
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             var championtoDelete = this.ChampionsLogic.Read(id);
             this.ChampionsLogic.Delete(id);
-            this.hub.Clients.All.SendAsync("ChampionDeleted", championtoDelete);
+            this.hub.Clients.All.SendAsync("ChampionsDeleted", championtoDelete);
         }
     }
 }

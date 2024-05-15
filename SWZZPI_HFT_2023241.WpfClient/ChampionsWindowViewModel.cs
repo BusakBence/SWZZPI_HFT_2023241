@@ -29,7 +29,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                         Species = value.Species,
                         Lane = value.Lane,
                         ReleaseYear = value.ReleaseYear,
-                        Region = value.Region
+                        RegionsId = value.RegionsId
                     };
                     OnPropertyChanged();
                     (DeleteChampionsCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -48,13 +48,12 @@ namespace SWZZPI_HFT_2023241.WpfClient
                 {
                     Champions.Add(new Champions()
                     {
-                        Id = SelectedChampion.Id,
                         Name = SelectedChampion.Name,
                         Gender = SelectedChampion.Gender,
                         Species = SelectedChampion.Species,
                         Lane = SelectedChampion.Lane,
                         ReleaseYear = SelectedChampion.ReleaseYear,
-                        Region = SelectedChampion.Region
+                        RegionsId = SelectedChampion.RegionsId
                     });
                 });
                 DeleteChampionsCommand = new RelayCommand(() =>
@@ -69,15 +68,7 @@ namespace SWZZPI_HFT_2023241.WpfClient
                 {
                     Champions.Update(SelectedChampion);
                 });
-                SelectedChampion = new Champions()
-                {
-                    Id = int.MaxValue,
-                    Name = "",
-                    Gender = "",
-                    Species = "",
-                    Lane = "",
-                    ReleaseYear = 2024
-                };
+                SelectedChampion = new Champions();
             }
         }
         public static bool IsInDesignMode

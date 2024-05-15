@@ -9,13 +9,13 @@ function setupSignalR() {
         .withUrl("http://localhost:30487/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
-    connection.on("AbilityCreated", (user, message) => {
+    connection.on("AbilitiesCreated", (user, message) => {
         getdata();
     });
-    connection.on("AbilityDeleted", (user, message) => {
+    connection.on("AbilitiesDeleted", (user, message) => {
         getdata();
     });
-    connection.on("AbilityUpdated", (user, message) => {
+    connection.on("AbilitiesUpdated", (user, message) => {
         getdata();
     });
     connection.onclose(async () => {
@@ -68,7 +68,7 @@ function create() {
 }
 
 function remove(id) {
-    fetch("http://localhost:30487/Abilites/" + id, {
+    fetch("http://localhost:30487/Abilities/" + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
@@ -84,12 +84,12 @@ function update() {
     document.getElementById('updateformdiv').style.display = 'none';
     let name = document.getElementById('AbilitytoUpdate').value;
     let abilityKey = document.getElementById('KeytoUpdate').value;
-    let champion = Number(document.getElementById('ChampionIdtoUpdate').value);
+    let championId = Number(document.getElementById('ChampionIdtoUpdate').value);
     fetch('http://localhost:30487/Abilities', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { Id: abilityIdtoUpdate, Name: name, AbilityKey: abilityKey, Champion: champion.name }),
+            { Id: abilityIdtoUpdate, Name: name, AbilityKey: abilityKey, ChampionId: championId }),
     })
             .then(response => response)
             .then(data => {
@@ -100,8 +100,8 @@ function update() {
 }
 function showupdate(id) {
     document.getElementById('AbilitytoUpdate').value = abilities.find(t => t['id'] == id)['Name'];
-    document.getElementById('KeytoUpdate').value = abilities.find(t => t['id'] == id)[char.parse('AbilityKey')];
-    document.getElementById('ChampionIdtoUpdate').value = Number(abilities.find(t => t['id'] == id)['ChampionId']);
+    document.getElementById('KeytoUpdate').value = abilities.find(t => t['id'] == id)['AbilityKey'];
+    document.getElementById('ChampionIdtoUpdate').value = abilities.find(t => t['id'] == id)['ChampionId'];
     document.getElementById('updateformdiv').style.display = 'flex';
-    abilityIdtoupdate = id;
+    abilityIdtoUpdate = id;
 }

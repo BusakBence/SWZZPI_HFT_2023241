@@ -16,25 +16,25 @@
             </Grid.ColumnDefinitions>
             <StackPanel>
                 <Label Content="Regions" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-                <ListBox ItemsSource="{Binding Regions}" SelectedItem="{Binding SelectedRegion}" ScrollViewer.CanContentScroll="True">
+                <ListBox ItemsSource="{Binding Regions}" SelectedItem="{Binding SelectedRegion}" HorizontalContentAlignment="Stretch">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="2" BorderBrush="Black">
                                 <Grid Background="#399cbd">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-                                    <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
-                                    <Label Content="{Binding Location}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
-                                    <Label Content="{Binding TechnologyLevel}" Grid.Row="0" Grid.Column="2" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
-                                    <Label Content="{Binding Environment}" Grid.Row="1" Grid.Column="0" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding Location}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding TechnologyLevel}" Grid.Row="0" Grid.Column="2" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
                                 <Label Content="{Binding FormOfGovernment}" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
+                                <Label Content="{Binding Environment}" Grid.Row="1" Grid.Column="0" Margin="5" Padding="5" Foreground="#DAA520" Background="#1434A4"/>
                             </Grid>
                             </Border>
                         </DataTemplate>
@@ -56,21 +56,21 @@
                         <Label Grid.Column="0" Content="Name:"  Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
                         <TextBox Grid.Column="0" Text="{Binding SelectedRegion.Name}" Padding="5" Margin="0,0,0,30"/>
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Grid.Row="0">
-                        <Label Grid.Column="0" Content="Location:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-                        <TextBox Grid.Column="0" Text="{Binding SelectedRegion.Location}" Padding="5" Margin="0,0,0,30"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="0" Grid.Row="1">
-                        <Label Grid.Column="0" Content="Environment:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-                        <TextBox Grid.Column="0" Text="{Binding SelectedRegion.Environment}" Padding="5" Margin="0,0,0,30"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Grid.Row="1">
+                <StackPanel Grid.Column="1" Grid.Row="0">
+                    <Label Grid.Column="0" Content="Location:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedRegion.Location}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1">
                         <Label Grid.Column="0" Content="Technology level:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
                         <TextBox Grid.Column="0" Text="{Binding SelectedRegion.TechnologyLevel}" Padding="5" Margin="0,0,0,30"/>
                     </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" >
                     <Label Grid.Column="0" Content="Form of government:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
                     <TextBox Grid.Column="0" Text="{Binding SelectedRegion.FormOfGovernment}" Padding="5" Margin="0,0,0,30"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <Label Grid.Column="0" Content="Environment:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedRegion.Environment}" Padding="5" Margin="0,0,0,30"/>
                 </StackPanel>
             </Grid>
                 <Button Content="Create" Command="{Binding CreateRegionsCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>

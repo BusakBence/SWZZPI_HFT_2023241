@@ -60,13 +60,13 @@
                     <TextBox Grid.Column="0" Text="{Binding SelectedAbilities.AbilityKey}" Padding="5" Margin="0,0,0,30"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" >
-                    <Label Grid.Column="0" Content="Champion:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-                    <TextBox Grid.Column="0" Text="{Binding SelectedAbilities.Champion.Name}" Padding="5" Margin="0,0,0,30"/>
+                    <Label Grid.Column="0" Content="Champion ID" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedAbilities.ChampionId}" Padding="5" Margin="0,0,0,30"/>
                 </StackPanel>
             </Grid>
             <Button Content="Create" Command="{Binding CreateAbilitiesCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>
             <Button Content="Delete" Command="{Binding DeleteAbilitiesCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>
-            <Button Content="Update" Command="{Binding UpdateAbilitieCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>
+            <Button Content="Update" Command="{Binding UpdateAbilitiesCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>
         </StackPanel>
     </Grid>
 </Window>

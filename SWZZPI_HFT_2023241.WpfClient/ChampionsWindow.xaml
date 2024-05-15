@@ -14,9 +14,9 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel CanVerticallyScroll="True">
             <Label Content="Champions" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-            <ListBox ItemsSource="{Binding Champions}" SelectedItem="{Binding SelectedChampion}">
+            <ListBox ItemsSource="{Binding Champions}" SelectedItem="{Binding SelectedChampion}"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2" BorderBrush="Black">
@@ -74,8 +74,8 @@
                     <TextBox Grid.Column="0" Text="{Binding SelectedChampion.ReleaseYear}" Padding="5" Margin="0,0,0,30"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="2">
-                    <Label Grid.Column="0" Content="Region:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
-                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.Region.Name}" Padding="5" Margin="0,0,0,30"/>
+                    <Label Grid.Column="0" Content="Region Id:" Foreground="#DAA520" Background="#1434A4" Padding="5" FontSize="16"/>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedChampion.RegionsId}" Padding="5" Margin="0,0,0,30"/>
                 </StackPanel>
             </Grid>
             <Button Content="Create" Command="{Binding CreateChampionsCommand}" Margin="5" Padding="5" Background="#1434A4" Foreground="#DAA520" FontSize="16"/>

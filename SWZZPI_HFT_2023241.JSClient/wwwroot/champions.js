@@ -9,13 +9,13 @@ function setupSignalR() {
         .withUrl("http://localhost:30487/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
-    connection.on("ChampionCreated", (user, message) => {
+    connection.on("ChampionsCreated", (user, message) => {
         getdata();
     });
-    connection.on("ChampionDeleted", (user, message) => {
+    connection.on("ChampionsDeleted", (user, message) => {
         getdata();
     });
-    connection.on("ChampionUpdated", (user, message) => {
+    connection.on("ChampionsUpdated", (user, message) => {
         getdata();
     });
     connection.onclose(async () => {

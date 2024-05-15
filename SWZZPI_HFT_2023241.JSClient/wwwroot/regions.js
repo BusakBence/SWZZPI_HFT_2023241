@@ -9,13 +9,13 @@ function setupSignalR() {
         .withUrl("http://localhost:30487/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
-    connection.on("RegionCreated", (user, message) => {
+    connection.on("RegionsCreated", (user, message) => {
         getdata();
     });
-    connection.on("RegionDeleted", (user, message) => {
+    connection.on("RegionsDeleted", (user, message) => {
         getdata();
     });
-    connection.on("RegionUpdated", (user, message) => {
+    connection.on("RegionsUpdated", (user, message) => {
         getdata();
     });
     connection.onclose(async () => {
@@ -37,14 +37,14 @@ async function getdata() {
     await fetch("http://localhost:30487/Regions")
         .then(x => x.json())
         .then(y => {
-            champions = y;
+            regions = y;
             display();
         });
 }
 function display() {
     console.log(regions);
     document.getElementById('resultarea').innerHTML = "";
-    champions.forEach(t => {
+    regions.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>" + t.id + "</td><td>" + t.name + "</td><td>" + t.location + "</td><td>" + t.technologyLevel + "</td><td>" + t.formOfGovernment + "</td><td>" + t.environment + "</td><td>" + `<button type="button" onclick="remove(${t.id})">Delete</button>` + `<button type="button" onclick="showupdate(${t.id})">Update</button>` + "</td></tr>"
     })
@@ -93,7 +93,7 @@ function update() {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { Name: name, Location: location, Id: regionIdtoUpdate, TechnologyLevel: technologyLevel, FormOfGovernment: formOfGovernment, Environment: environment }),
+            { Id: regionIdtoUpdate, Name: name, Location: location, TechnologyLevel: technologyLevel, FormOfGovernment: formOfGovernment, Environment: environment }),
     })
         .then(response => response)
         .then(data => {
@@ -102,9 +102,9 @@ function update() {
         })
         .catch((e) => { console.error('Error:', e); });
 }
-function showupdate(id) {
+function showupdate(id) {    
     document.getElementById('RegiontoUpdate').value = regions.find(t => t['id'] == id)['Name'];
-    document.getElementById('LocationtoUpdate').value = regions.find(t => t['id'] == id)['Location'];   
+    document.getElementById('LocationtoUpdate').value = regions.find(t => t['id'] == id)['Location'];
     document.getElementById('TLtoUpdate').value = regions.find(t => t['id'] == id)['TechnologyLevel'];
     document.getElementById('FOGtoUpdate').value = regions.find(t => t['id'] == id)['FormOfGovernment'];
     document.getElementById('EnvironmenttoUpdate').value = regions.find(t => t['id'] == id)['Environment'];

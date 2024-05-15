@@ -28,13 +28,14 @@ namespace SWZZPI_HFT_2023241.Endpoint
             services.AddTransient<IChampionsLogic, ChampionsLogic>();
             services.AddTransient<IRegionsLogic, RegionsLogic>();
             services.AddTransient<IAbilitiesLogic, AbilitiesLogic>();
+            services.AddSignalR();
             services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "SWZZPI_HFT_2023241.Endpoint", Version = "v1" });
             });
-            services.AddSignalR();
+            
         }       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
